@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <title>Login</title>
+    <style>
+        /* Estilo para o corpo da página */
+        body {
+            background-image: url('/static/images/tela.PNG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            
+        }
+
+
+        /* Container do logo */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Container do formulário de login */
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
+            padding: 15px;
+            border-radius: 10px; /* Bordas arredondadas */
+            margin: 10px;
+            width: 200px; /* Largura fixa para garantir que o conteúdo não quebre */
+        }
+
+        /* Estilo dos inputs do formulário */
+        .login-container input {
+            display: block;
+            margin: 10px 0;
+            width: 89%;
+            padding: 10px;
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+
+        /* Estilo do botão de login */
+        .login-container button {
+            padding: 10px;
+            width: 100%;
+            background-color: #63db95; /* Fundo cinza médio */
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Efeito de hover no botão de login */
+        .login-container button:hover {
+            background-color: #8F0000; /* Fundo cinza mais escuro no hover */
+        }
+
+        /* Estilo dos labels do formulário */
+        .login-container label {
+            margin: 10px 0 5px;
+        }
+
+        /* Estilo para o checkbox e o texto "Me manter conectado" na mesma linha */
+        .login-container .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+            margin-right: 0px;
+            white-space: nowrap; /* Impede quebra de linha */
+        }
+
+        .login-container .checkbox-container input {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Container do logo -->
+    <div class="logo-container">
+        <img src="/static/images/logo.png" alt="Logo">
+    </div>
+    <!-- Container principal para alinhar o login e o texto "BEM VINDO" -->
+    <div class="main-container">
+        <!-- Container do formulário de login -->
+        <div class="login-container">
+            <form method="POST">
+                {% csrf_token %}
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                <!-- Container do checkbox e texto "Me manter conectado" -->
+                <div class="checkbox-container">
+                    <input type="checkbox" id="manter_conectado" name="manter_conectado">
+                    <label for="manter_conectado">Me manter conectado</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            {% if erro %}
+            <p style="color: red;">{{ erro }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

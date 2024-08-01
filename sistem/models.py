@@ -1,0 +1,30 @@
+# models.py
+from django.db import models
+
+class Usuario(models.Model):
+    id = models.AutoField(primary_key=True)
+    usuario = models.CharField(max_length=100)
+    senha = models.CharField(max_length=100)
+    relatorios = models.ManyToManyField('Relatorio', related_name='usuarios', blank=True)
+    acesso = models.BooleanField()
+    onedrive_link = models.URLField(blank=True, null=True)
+    last_login = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.usuario
+
+class Relatorio(models.Model):
+    id = models.AutoField(primary_key=True)
+    relatorio = models.CharField(max_length=100)
+    link = models.URLField()
+    
+    def __str__(self):
+        return self.relatorio
+
+class Acesso(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='acessos')
+    data_hora = models.DateTimeField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField()
+
+    def __str__(self):
+        return f'{self.usuario.usuario} - {self.data_hora}'

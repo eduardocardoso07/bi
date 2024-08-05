@@ -2,9 +2,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.utils import timezone
 from .models import Usuario, Acesso
 import logging
+from django.http import HttpResponseForbidden
 
 logger = logging.getLogger(__name__)
 
@@ -200,14 +202,16 @@ def login_view(request):
 
             logger.info(f'Usuário {usuario} realizou login em {timezone.now()}')
 
-            return redirect('relatorios')
+            return redirect('relatorios')  # Redireciona para a página de relatórios
         else:
             return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})
 
     return render(request, 'login.html')
 
-@login_required
 def relatorios_view(request):
+    if 'usuario' not in request.session:
+        return redirect('login')  # Redireciona para a página de login se o usuário não estiver autenticado
+
     usuario = request.session['usuario']
     relatorios = request.session.get('relatorios', [])
     relatorios_disponiveis = [{'nome': r, 'url': relatorios_urls.get(r, '#')} for r in relatorios]
@@ -220,6 +224,7 @@ def relatorios_view(request):
     onedrive_link = user_obj.onedrive_link
 
     return render(request, 'relatorios.html', {'relatorios': relatorios_disponiveis, 'onedrive_link': onedrive_link})
+
 
 def logout_view(request):
     logout(request)
@@ -243,7 +248,6 @@ def user_login(request):
 
             return redirect('home')
         else:
-            # Return an 'invalid login' error message.
-            ...
+            return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})
     else:
         return render(request, 'login.html')

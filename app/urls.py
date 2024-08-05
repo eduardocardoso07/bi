@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.urls import path
 from sistem.views import login_view, relatorios_view, logout_view
-
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [

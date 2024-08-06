@@ -1,6 +1,12 @@
 # models.py
 from django.db import models
 
+class Coordenador(models.Model):
+    nome = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.nome
+
 class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     usuario = models.CharField(max_length=100)
@@ -9,6 +15,7 @@ class Usuario(models.Model):
     acesso = models.BooleanField()
     onedrive_link = models.URLField(blank=True, null=True)
     last_login = models.DateTimeField(blank=True, null=True)
+    coordenador = models.ForeignKey(Coordenador, on_delete=models.SET_NULL, null=True, blank=True, related_name='vendedores')
 
     def __str__(self):
         return self.usuario

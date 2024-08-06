@@ -225,7 +225,7 @@ def relatorios_view(request):
 
     return render(request, 'relatorios.html', {'relatorios': relatorios_disponiveis, 'onedrive_link': onedrive_link})
 
-
+ 
 def logout_view(request):
     logout(request)
     return redirect('login')

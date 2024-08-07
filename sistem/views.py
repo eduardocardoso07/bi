@@ -166,6 +166,18 @@ relatorios_urls = {
 'OneDrive - COORD REVENDA - MT Sul':'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EggYms1nftdPpnzoAsmMI28BJcXreG9CnoAXctcAIj-IKQ',
 'OneDrive - COORD REVENDA - MT Norte':'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EuAddOfY2c5DmoW80Gr4rrcBocXpRhF4xQSP2RkHFrut8A?e=Fh4rjE',
 'OneDrive - INSIDE':'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Eh10RGR4UMpLhi-KtcA6xh0B-20RwZMoCZK5TOn6OP5gjQ?e=HF5GPt',
+
+'Potencial Área - Consumo':'https://app.powerbi.com/view?r=eyJrIjoiNGYxYjIwNzMtNzdmNS00NzdlLWEzZDktN2JlMmFiNTNjMjE3IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Revenda':'https://app.powerbi.com/view?r=eyJrIjoiNjFhMGQ4OTktOTQxYy00ZTk1LWJmYzUtMDQ5NmI1MTdiMmYwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Consumo Agri MS':'https://app.powerbi.com/view?r=eyJrIjoiYmM5YTA5ZTYtNGZmYi00MGNlLWExNmMtNjQyZTQ3N2RkYTNiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Consumo MS':'https://app.powerbi.com/view?r=eyJrIjoiYjI3MTEwOTItOGI4ZC00MDU1LTk1MjktYTFlOGE5MWI2MzU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Consumo MT':'https://app.powerbi.com/view?r=eyJrIjoiOGFhZmEwODktZmQwNC00ZDAxLWFjNmMtYTk0MWU0NGY1YTc2IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Inside':'https://app.powerbi.com/view?r=eyJrIjoiNTM0MWUwZDQtOTJjOC00MTRlLThjNTEtNWNjZDJkM2NjZWQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Revenda MS':'https://app.powerbi.com/view?r=eyJrIjoiMTZhYjhiMjgtYjU3OS00ZTY1LTk5ZjEtMGIzNTFkM2M0ZGI0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Potencial Área - Revenda MT Norte':'https://app.powerbi.com/view?r=eyJrIjoiOWEzNjQwZTctMjdmOC00YjZhLWIxZmEtOTI1MDEwMTJhMjMzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9',
+'Potencial Área - Revenda MT Sul':'https://app.powerbi.com/view?r=eyJrIjoiMzc5ZDUxZjctYzk1Yi00MzM1LTk3MGQtNGU3MGM4OTk2NTAwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9',
+'Potencial Área':'https://app.powerbi.com/view?r=eyJrIjoiZWZkYTI3OTQtZjFkMS00Zjg5LTg3MzctZWZiMjcxMTg0YjhmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9',
+
 }
 
 def verificar_credenciais(usuario, senha):

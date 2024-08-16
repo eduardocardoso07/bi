@@ -134,6 +134,36 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Define o tempo de expiração em milissegundos (1 hora = 3600 segundos = 3600000 ms)
+        const sessionExpiryTime = 30000;
+
+        // Redireciona automaticamente para a página de login após a expiração
+        setTimeout(function(){
+            window.location.href = "{% url 'login' %}";
+        }, sessionExpiryTime);
+
+        // Monitora a atividade do usuário e redefine o temporizador a cada nova atividade
+        function resetTimer() {
+            clearTimeout(timer);
+            timer = setTimeout(function(){
+                window.location.href = "{% url 'login' %}";
+            }, sessionExpiryTime);
+        }
+
+        // Eventos que serão monitorados para detectar atividade do usuário
+        let timer = setTimeout(function(){
+            window.location.href = "{% url 'login' %}";
+        }, sessionExpiryTime);
+
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer;
+        window.ontouchstart = resetTimer;
+        window.onclick = resetTimer;
+        window.onkeypress = resetTimer;
+    </script>
 </head>
 
 <body>
@@ -151,9 +181,8 @@
         <!-- Formulário de logout -->
         <form class="logout-form" action="/logout/" method="POST">
             {% csrf_token %}
-            <button type="submit">Logout</button>
+            <button type="submit">Sair</button>
         </form>
     </div>
 </body>
-
 </html>

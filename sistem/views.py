@@ -1,12 +1,9 @@
 # views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.utils import timezone
 from .models import Usuario, Acesso
 import logging
-from django.http import HttpResponseForbidden
 
 logger = logging.getLogger(__name__)
 
@@ -194,14 +191,12 @@ def login_view(request):
     if request.method == 'POST':
         usuario = request.POST['usuario']
         senha = request.POST['senha']
-        manter_conectado = 'manter_conectado' in request.POST
 
         relatorios, acesso_liberado = verificar_credenciais(usuario, senha)
         if acesso_liberado:
             request.session['usuario'] = usuario
             request.session['relatorios'] = relatorios
-            if manter_conectado:
-                request.session.set_expiry(0)
+            request.session.set_expiry(30)  # Expira a sessão em 1 hora
 
             # Registrar o último login e o acesso
             usuario_obj = Usuario.objects.get(usuario=usuario)
@@ -215,15 +210,15 @@ def login_view(request):
 
             logger.info(f'Usuário {usuario} realizou login em {timezone.now()}')
 
-            return redirect('relatorios')  # Redireciona para a página de relatórios
+            return redirect('relatorios')
         else:
             return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})
 
     return render(request, 'login.html')
 
 def relatorios_view(request):
-    if 'usuario' not in request.session:
-        return redirect('login')  # Redireciona para a página de login se o usuário não estiver autenticado
+    if not request.session.get('usuario'):  # Verifica se a sessão ainda é válida
+        return redirect('login')
 
     usuario = request.session['usuario']
     relatorios = request.session.get('relatorios', [])
@@ -238,7 +233,6 @@ def relatorios_view(request):
 
     return render(request, 'relatorios.html', {'relatorios': relatorios_disponiveis, 'onedrive_link': onedrive_link})
 
- 
 def logout_view(request):
     logout(request)
     return redirect('login')
@@ -259,6 +253,7 @@ def user_login(request):
                 ip_address=request.META.get('REMOTE_ADDR')
             )
 
+            request.session.set_expiry(30)  # Expira a sessão em 1 hora
             return redirect('home')
         else:
             return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})

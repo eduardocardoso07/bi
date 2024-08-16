@@ -196,7 +196,7 @@ def login_view(request):
         if acesso_liberado:
             request.session['usuario'] = usuario
             request.session['relatorios'] = relatorios
-            request.session.set_expiry(30)  # Expira a sessão em 1 hora
+            request.session.set_expiry(14400)  # Expira a sessão em 1 hora
 
             # Registrar o último login e o acesso
             usuario_obj = Usuario.objects.get(usuario=usuario)
@@ -253,7 +253,7 @@ def user_login(request):
                 ip_address=request.META.get('REMOTE_ADDR')
             )
 
-            request.session.set_expiry(30)  # Expira a sessão em 1 hora
+            request.session.set_expiry(14400)  # Expira a sessão em 1 hora
             return redirect('home')
         else:
             return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})

@@ -259,3 +259,4 @@ def user_login(request):
             return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})
     else:
         return render(request, 'login.html')
+    

@@ -9,11 +9,11 @@ logger = logging.getLogger(__name__)
 
 relatorios_urls = {
 'Acompanhamento Gerentes': 'https://app.powerbi.com/view?r=eyJrIjoiYmZlNmNlZjYtZmNhZS00MDE4LTliMWQtYmExNWQ4NGZlZTlkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiNTE0ZWQ5MjYtNWIwZC00MWZmLWIzYTgtZjcyNzdkNGE5NWRjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiNzkxNmRkM2MtMWEwYy00OTVkLThkN2ItNjMwNDE3YjJiY2JhIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiOTczMjM5MDYtODhiZC00OTcyLWFlNWYtMjFjNzJhMDg4ZjA5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
 'Acompanhamento Diario': 'https://app.powerbi.com/view?r=eyJrIjoiNGE3MWQ5NjgtMzc1Ny00MGZmLWEzMDMtYTU1MTNmMzUwZDMxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-'Acompanhamento Diario - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiYjQ0NDY4OWMtMDM5YS00MGYzLTg1ZjAtMWE2YzM0ZWE1NTFhIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Acompanhamento Diario - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiN2EzMTAwOTItN2MzNi00MGQzLWJkMzQtMjNjZTJkNmI1YmEzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Acompanhamento Diario - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMGFkMjkzNTktMzEzYS00ZTJjLThmZTctMTE2MDMyOGJkNzJhIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Acompanhamento Diario - REVENDA - MT Norte': 'https://app.powerbi.com/view?r=eyJrIjoiZDRkMmVmZjktNDkxMC00OGI0LTllNmMtOGU1NmY0NjY1NDc1IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Acompanhamento Diario - REVENDA - MS': 'https://app.powerbi.com/view?r=eyJrIjoiOGI5YzQyMTAtOTgxMy00NWExLTg5ZmEtNmE5NjlhOWRlOTRmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -24,7 +24,7 @@ relatorios_urls = {
 'Acompanhamento Diario - INSIDE':"https://app.powerbi.com/view?r=eyJrIjoiY2VkZWM2OTItMDhkOC00MDA5LTk0ZTctMGVjZjQyMjYxNmU4IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9",
 
 'DAP KPI - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiZjI1NGY3NTktYTllMC00OGFmLThmYzctYjk5NGU1MWI4YzA0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-'DAP KPI Consumo - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiODU5OTZhODItY2NiYS00YmQ3LWJjNzgtMjI1YzEzY2MxZjE5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'DAP KPI Consumo - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiMzU1NTdiNmYtNTRkYi00ODVhLThkMDMtNWJmNzdhMmE4YTYwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'DAP KPI Revenda - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiMTE5NGVmOWItZDU5MS00NzRhLTkyNWQtYWM3Y2M3MDljMDJjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'DAP KPI Revenda MS - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiZDlkYjI2MTItYWU2Ni00MTRhLTllOGUtMjNlMjRiMmU0YTdhIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'DAP KPI Revenda MT Norte - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiZTAxNDg5OTEtOTk3ZC00OGVkLTg0MWQtNjlmNWYxMjk1NzllIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -36,7 +36,7 @@ relatorios_urls = {
 
 'Performance CO': 'https://app.powerbi.com/view?r=eyJrIjoiODRmZDQ2ZjQtZTdkMS00ZDI3LWE4NzQtZjMyMWI0NGUzMzZmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Performance Gerente Revenda':'https://app.powerbi.com/view?r=eyJrIjoiMDIxNDNmMmMtOTQ2ZC00OTYxLTgyZjEtZDJiMGI4ZTgzMzYxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-'Performance Gerente Consumo':'https://app.powerbi.com/view?r=eyJrIjoiZDRkMGY1ZDktMTgzMy00MTJiLThlZDYtNDRjZjQxOGMwYWYxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+'Performance Gerente Consumo':'https://app.powerbi.com/view?r=eyJrIjoiNTdjOTM3NmMtZmM4Mi00YmZjLWEwMmYtYjUzMTE1NzYzZDQyIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Performance Coordenador -CONSUMO AGRI - MS': 'https://app.powerbi.com/view?r=eyJrIjoiNjE4YzUwNGMtMzFjZi00Mzk5LTkwNGItODA2NTU4MDI1NThhIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Performance Coordenador - REVENDA - MS':'https://app.powerbi.com/view?r=eyJrIjoiNWUxNjFkZWQtNTE4MS00NjgwLWJjMGYtNTcyMzY5NGIxMTg1IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 'Performance Coordenador - CONSUMO - MS':'https://app.powerbi.com/view?r=eyJrIjoiMjI1YTU3MTEtYzQ1NS00ZWIwLThmM2YtZTAzYWUyMTI2ODM5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

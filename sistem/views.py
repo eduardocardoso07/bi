@@ -176,6 +176,8 @@ relatorios_urls = {
 'Potencial Área - Revenda MT Sul':'https://app.powerbi.com/view?r=eyJrIjoiMzc5ZDUxZjctYzk1Yi00MzM1LTk3MGQtNGU3MGM4OTk2NTAwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9',
 'Potencial Área':'https://app.powerbi.com/view?r=eyJrIjoiZWZkYTI3OTQtZjFkMS00Zjg5LTg3MzctZWZiMjcxMTg0YjhmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9',
 
+'Base de conhecimento Tecnologia da Informação':'https://linktr.ee/ti.colub',
+
 }
 
 def verificar_credenciais(usuario, senha):

@@ -1,4 +1,3 @@
-# models.py
 from django.db import models
 
 class Coordenador(models.Model):
@@ -23,7 +22,7 @@ class Usuario(models.Model):
 class Relatorio(models.Model):
     id = models.AutoField(primary_key=True)
     relatorio = models.CharField(max_length=100)
-    link = models.URLField()
+    link = models.TextField()  # Usar TextField para armazenar o HTML do iframe
     
     def __str__(self):
         return self.relatorio

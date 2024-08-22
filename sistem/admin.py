@@ -1,5 +1,5 @@
-# admin.py
 from django.contrib import admin
+from django.utils.html import format_html  # Certifique-se de importar format_html
 from .models import Usuario, Relatorio, Acesso, Coordenador
 
 class CoordenadorFilter(admin.SimpleListFilter):

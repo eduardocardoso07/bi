@@ -1,141 +1,270 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Relatórios Disponíveis</title>
     <style>
-        /* Estilo para o corpo da página */
         body {
-            background: linear-gradient(to right, black, #080160, black);
-            background-size: cover;
-            background-repeat: no-repeat;
-            color: white;
-            padding: 3rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
+            background-color: var(--body-bg-color);
+            background-image: var(--body-bg-gradient, none);
+            color: var(--body-text-color);
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            box-sizing: border-box;
-        }
-
-        /* Container principal dos relatórios */
-        .reports-container {
-            background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
-            padding: 20px;
-            border-radius: 10px; /* Bordas arredondadas */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para efeito de elevação */
-            text-align: center;
-            width: 100%; /* Largura total */
-            max-width: 1200px; /* Largura máxima */
-            height: 90vh; /* Altura máxima */
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribui o espaço igualmente entre os filhos */
+            min-height: 100vh;
+            padding-bottom: 20px;
         }
 
-        /* Estilo do título */
-        .reports-container h1 {
-            margin-bottom: 10px;
-            font-size: 1.8em;
-            border-bottom: 2px solid #8F0000; /* Linha abaixo do título */
+        /* Estilo do quadrado flutuante */
+        .floating-square {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 2.3cm;
+            height: 3cm;
+            background-color: transparent;
+            border: 1px solid rgba(252, 0, 0, 0);
+            z-index: 9999;
+            transition: height 0.2s ease-out;
+        }
+
+        :root {
+            --background-color-light: #f8f9fa;
+            --background-color-dark: #040739;
+            --text-color-light: #040739;
+            --text-color-dark: #f8f9fa;
+            --hover-color: #7d080a;
+            --navbar-bg-light: transparent;
+            --navbar-bg-dark: #000000;
+            --navbar-text-light: #040739;
+            --navbar-text-dark: #f8f9fafa;
+            --sidebar-bg-light: #f1f1f1;
+            --sidebar-bg-dark: transparent;
+            --sidebar-text-light: #040739;
+            --sidebar-text-dark: #ffffff;
+            --body-bg-light: #f8f9fa;
+            --body-bg-dark: #010f76;
+            --body-bg-gradient-dark: linear-gradient(to bottom, #000000, #010f76);
+            --body-text-light: #040739;
+            --body-text-dark: #f8f9fafa;
+            --footer-bg-light: #f1f1f1;
+            --footer-bg-dark: #010f76;
+            --footer-text-light: #040739;
+            --footer-text-dark: #f8f9fafa;
+
+            --sidebar-font-size: 12px;
+            --button-bg-color: #747474;
+            --button-bg-hover: #7d080a;
+            --button-bg-selected: #7d080a;
+        }
+
+        [data-theme="light"] {
+            --body-bg-color: var(--body-bg-light);
+            --body-text-color: var(--body-text-light);
+            --navbar-bg: var(--navbar-bg-light);
+            --navbar-text: var(--navbar-text-light);
+            --sidebar-bg: var(--sidebar-bg-light);
+            --sidebar-text: var(--sidebar-text-light);
+            --footer-bg: var(--footer-bg-light);
+            --footer-text: var(--footer-text-light);
+        }
+
+        [data-theme="dark"] {
+            --body-bg-color: var(--body-bg-dark);
+            --body-bg-gradient: var(--body-bg-gradient-dark);
+            --body-text-color: var(--body-text-dark);
+            --navbar-bg: var(--navbar-bg-dark);
+            --navbar-text: var(--navbar-text-dark);
+            --sidebar-bg: var(--sidebar-bg-dark);
+            --sidebar-text: var(--sidebar-text-dark);
+            --footer-bg: var(--footer-bg-dark);
+            --footer-text: var(--footer-text-dark);
+        }
+
+        .navbar {
+            background-color: var(--navbar-bg);
+            color: var(--navbar-text);
+            padding: 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar .navbar-left {
+            flex: 1;
+        }
+
+        .navbar .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .navbar-right-item {
+            margin-left: 20px;
+        }
+
+        .navbar span,
+        .navbar a {
+            color: var(--navbar-text);
+            text-decoration: none;
+        }
+
+        .navbar a {
+            margin-left: 20px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .navbar-brand {
+            color: var(--navbar-text);
+        }
+
+        .navbar .report-status {
+            color: var(--navbar-text);
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            width: 250px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--sidebar-text);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            font-size: var(--sidebar-font-size);
+        }
+
+        .sidebar h5 {
+            font-size: calc(var(--sidebar-font-size) + 2px);
+            color: var(--sidebar-text);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #7d080a;
             padding-bottom: 10px;
         }
 
-        /* Estilo para o contêiner de lista com rolagem */
-        .reports-list {
-            flex: 1; /* Faz o contêiner crescer para preencher o espaço disponível */
-            overflow-y: auto; /* Adiciona rolagem vertical */
-            padding: 10px;
-        }
-
-        /* Estilo para a lista de relatórios */
-        .reports-container ul {
-            list-style-type: none; /* Remove os marcadores da lista */
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap; /* Permite que os itens quebrem linha */
-            justify-content: center; /* Centraliza os itens horizontalmente */
-            margin: 0;
-        }
-
-        /* Estilo para cada item da lista */
-        .reports-container li {
-            margin: 10px;
-            flex: 0 0 calc(25% - 20px); /* Calcula a largura dos itens (25% de largura com 20px de margem) */
-            max-width: calc(25% - 20px); /* Largura máxima dos itens */
-            text-align: center;
-        }
-
-        /* Estilo para os links dos relatórios */
-        .reports-container a {
-            color: white;
+        .sidebar a {
+            color: var(--sidebar-text);
             text-decoration: none;
-            padding: 10px 20px;
-            display: block; /* Faz o link ocupar toda a largura do item */
-            background-color: #747474; /* Fundo cinza médio */
-            border-radius: 5px; /* Bordas arredondadas */
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
-        }
-
-        /* Efeito de hover nos links */
-        .reports-container a:hover {
-            background-color: #8F0000; /* Fundo mais escuro no hover */
-            transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
-        }
-
-        /* Estilo para o formulário de logout */
-        .logout-form {
-            margin-top: 20px; /* Espaço acima do formulário */
-            text-align: center; /* Centraliza o botão de logout */
-        }
-
-        /* Estilo para o botão de logout */
-        .logout-form button {
-            padding: 10px 20px;
-            background-color: #63db95;
-            border: none;
-            color: white;
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
+            background-color: var(--button-bg-color);
         }
 
-        /* Efeito de hover no botão de logout */
-        .logout-form button:hover {
-            background-color: #8F0000; /* Fundo mais escuro no hover */
-            transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+        .sidebar a:hover {
+            background-color: var(--button-bg-hover);
+            color: #ffffff;
         }
 
-        /* Media queries para ajuste responsivo */
-        @media (max-width: 1200px) {
-            .reports-container li {
-                flex: 0 0 calc(33.33% - 20px); /* 3 colunas */
-                max-width: calc(33.33% - 20px);
+        .sidebar a.selected {
+            background-color: var(--button-bg-selected);
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: var(--body-bg-color);
+            background-image: var(--body-bg-gradient, none);
+            color: var(--body-text-color);
+        }
+
+        .content iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+
+        .logout-form {
+            display: none;
+        }
+
+        .footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 100;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                padding: 10px;
+                position: relative;
+                box-shadow: none;
+            }
+
+            .navbar {
+                font-size: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .report-status {
+                margin: 10px 0 0 0;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .footer {
+                font-size: 10px;
             }
         }
 
-        @media (max-width: 900px) {
-            .reports-container li {
-                flex: 0 0 calc(50% - 20px); /* 2 colunas */
-                max-width: calc(50% - 20px);
+        @media (max-width: 576px) {
+            .navbar span,
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .content iframe {
+                height: 60vh;
             }
         }
 
-        @media (max-width: 600px) {
-            .reports-container li {
-                flex: 0 0 calc(100% - 20px); /* 1 coluna */
-                max-width: calc(100% - 20px);
-            }
+        /* Adicione o CSS para tentar ocultar os botões de compartilhamento */
+        .content iframe {
+            position: relative;
+        }
+        
+        .content iframe:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
+     <script>
         // Define o tempo de expiração em milissegundos (1 hora = 3600 segundos = 3600000 ms)
         const sessionExpiryTime = 14400000;
 
@@ -163,27 +292,130 @@
         window.ontouchstart = resetTimer;
         window.onclick = resetTimer;
         window.onkeypress = resetTimer;
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.className = newTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
+        }
+
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        function updateReportStatus() {
+            const now = new Date();
+            const offset = -3;
+            const currentHour = now.getUTCHours() + offset;
+            const today = formatDate(new Date());
+            const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
+            let reportMessage = '';
+
+            if (currentHour < 11) {
+                reportMessage = `Relatórios atualizados ${today} às 00:00. Próxima atualização às 11:30, previsão de término 12:00.`;
+            } else if (currentHour >= 11 && currentHour < 18) {
+                reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização às 18:30, previsão de término 19:00.`;
+            } else if (currentHour >= 18 && currentHour <= 23) {
+                reportMessage = `Relatórios atualizados ${today} às 18:30. Próxima atualização ${tomorrow} às 11:30, previsão de término 12:00.`;
+            }
+
+            document.getElementById('report-status').innerText = reportMessage;
+        }
+
+        function adjustFloatingSquare() {
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const newHeight = 3 + (scrollPosition / documentHeight) * 10; // Altura ajustada dinamicamente
+            const floatingSquare = document.querySelector('.floating-square');
+            floatingSquare.style.height = `${newHeight}cm`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', storedTheme);
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedRelatorio = urlParams.get('relatorio');
+            if (selectedRelatorio) {
+                document.querySelectorAll('.sidebar a').forEach(link => {
+                    if (link.href.includes(selectedRelatorio)) {
+                        link.classList.add('selected');
+                    } else {
+                        link.classList.remove('selected');
+                    }
+                });
+            }
+
+            updateReportStatus();
+            window.addEventListener('scroll', adjustFloatingSquare); // Adiciona o listener de rolagem
+        });
     </script>
 </head>
-
 <body>
-    <!-- Container principal dos relatórios -->
-    <div class="reports-container">
-        <h1>Relatórios Disponíveis</h1>
-        <div class="reports-list">
-            <ul>
-                <!-- Links para os relatórios gerados dinamicamente pelo Python -->
-                {% for relatorio in relatorios %}
-                <li><a href="{{ relatorio.url }}" target="_blank">{{ relatorio.nome }}</a></li>
-                {% endfor %}
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="navbar-left">
+            <span>Bem-vindo(a), {{ usuario }}.</span>
         </div>
-        <!-- Formulário de logout -->
-        <form class="logout-form" action="/logout/" method="POST">
-            {% csrf_token %}
-            <button type="submit">Sair</button>
-        </form>
+        <div class="navbar-right">
+            <div class="report-status" id="report-status"></div>
+            <a href="#" id="theme-toggle" class="navbar-right-item" onclick="toggleTheme()">
+                <i id="theme-icon" class="bi bi-brightness-high"></i> Alternar tema
+            </a>
+            <a href="#" id="logout" class="navbar-right-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Encerrar sessão</a>
+        </div>
+    </nav>
+
+    <div class="d-flex flex-column flex-md-row">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h5>Relatórios Disponíveis</h5>
+            <div>
+                {% for relatorio in relatorios %}
+                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">{{ relatorio.nome }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <main class="content">
+            {% if relatorio_selecionado %}
+                {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado %}
+                    <p>O relatório selecionado é um link externo. 
+                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o relatório</a>.
+                    </p>
+                {% elif "linktr.ee" in relatorio_selecionado %}
+                    <p>O relatório selecionado é um link externo. 
+                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o Linktree</a>.
+                    </p>
+                {% else %}
+                    <iframe src="{{ relatorio_selecionado }}" frameborder="0"></iframe>
+                {% endif %}
+            {% else %}
+                <p>Selecione um relatório à esquerda para visualizá-lo.</p>
+            {% endif %}
+        </main>
     </div>
+
+    <!-- Formulário de logout -->
+    <form id="logout-form" action="{% url 'logout' %}" method="POST" class="logout-form">
+        {% csrf_token %}
+    </form>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2024 Desenvolvido Por Centro Oeste Lubrificantes - 07.606.538/0001-93</p>   
+    </footer>
+
+    <!-- Quadrado flutuante -->
+    <div class="floating-square"></div>
 </body>
 </html>
-

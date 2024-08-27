@@ -312,23 +312,24 @@
         }
 
         function updateReportStatus() {
-            const now = new Date();
-            const offset = -3;
-            const currentHour = now.getUTCHours() + offset;
-            const today = formatDate(new Date());
-            const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
-            let reportMessage = '';
+    const now = new Date();
+    const options = { timeZone: 'America/Campo_Grande', hour: 'numeric', hour12: false };
+    const currentHour = new Intl.DateTimeFormat('pt-BR', options).format(now);
+    const today = formatDate(new Date());
+    const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
+    let reportMessage = '';
 
-            if (currentHour < 11) {
-                reportMessage = `Relatórios atualizados ${today} às 00:00. Próxima atualização às 11:30, previsão de término 12:00.`;
-            } else if (currentHour >= 11 && currentHour < 18) {
-                reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização às 18:30, previsão de término 19:00.`;
-            } else if (currentHour >= 18 && currentHour <= 23) {
-                reportMessage = `Relatórios atualizados ${today} às 18:30. Próxima atualização amanhã às 11:30, previsão de término 12:00.`;
-            }
+    if (currentHour < 11) {
+        reportMessage = `Relatórios atualizados ${today} às 00:00. Próxima atualização às 11:30, previsão de término 12:00.`;
+    } else if (currentHour >= 11 && currentHour < 18) {
+        reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização às 18:30, previsão de término 19:00.`;
+    } else if (currentHour >= 18 && currentHour <= 23) {
+        reportMessage = `Relatórios atualizados ${today} às 18:30. Próxima atualização amanhã às 11:30, previsão de término 12:00.`;
+    }
 
-            document.getElementById('report-status').innerText = reportMessage;
-        }
+    document.getElementById('report-status').innerText = reportMessage;
+}
+
 
         function adjustFloatingSquare() {
             const scrollPosition = window.scrollY;

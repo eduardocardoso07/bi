@@ -175,10 +175,11 @@
         }
 
         .sidebar a.selected {
-            background-color: var(--button-bg-selected);
-            color: #7d080a;
-            font-weight: 300;
-        }
+        background-color: var(--button-bg-hover); /* Usando a mesma cor do hover */
+        color: #ffffff; /* Cor do texto no estado selecionado */
+        font-weight: 500; /* Tornar o texto mais visível */
+}
+
 
         .content {
             flex-grow: 1;
@@ -340,26 +341,36 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const storedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', storedTheme);
-            const themeIcon = document.getElementById('theme-icon');
-            themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
+    const storedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', storedTheme);
+    const themeIcon = document.getElementById('theme-icon');
+    themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const selectedRelatorio = urlParams.get('relatorio');
-            if (selectedRelatorio) {
-                document.querySelectorAll('.sidebar a').forEach(link => {
-                    if (link.href.includes(selectedRelatorio)) {
-                        link.classList.add('selected');
-                    } else {
-                        link.classList.remove('selected');
-                    }
-                });
-            }
-
-            updateReportStatus();
-            window.addEventListener('scroll', adjustFloatingSquare); // Adiciona o listener de rolagem
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+    
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            sidebarLinks.forEach(link => link.classList.remove('selected')); // Remove a classe 'selected' de todos os links
+            this.classList.add('selected'); // Adiciona a classe 'selected' ao link clicado
         });
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedRelatorio = urlParams.get('relatorio');
+    if (selectedRelatorio) {
+        sidebarLinks.forEach(link => {
+            if (link.href.includes(selectedRelatorio)) {
+                link.classList.add('selected');
+            } else {
+                link.classList.remove('selected');
+            }
+        });
+    }
+
+    updateReportStatus();
+    window.addEventListener('scroll', adjustFloatingSquare); // Adiciona o listener de rolagem
+});
+
     </script>
 </head>
 <body>

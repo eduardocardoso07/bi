@@ -313,19 +313,19 @@
         }
 
         function updateReportStatus() {
-    const now = new Date();
-    const options = { timeZone: 'America/Campo_Grande', hour: 'numeric', hour12: false };
-    const currentHour = new Intl.DateTimeFormat('pt-BR', options).format(now);
-    const today = formatDate(new Date());
-    const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
-    let reportMessage = '';
+        const now = new Date();
+        const options = { timeZone: 'America/Campo_Grande', hour: 'numeric', hour12: false };
+        const currentHour = new Intl.DateTimeFormat('pt-BR', options).format(now);
+        const today = formatDate(new Date());
+        const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
+        let reportMessage = '';
 
-    if (currentHour < 11) {
-        reportMessage = `Relatórios atualizados ${today} às 00:00. Próxima atualização às 11:30, previsão de término 12:00.`;
-    } else if (currentHour >= 11 && currentHour < 18) {
-        reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização às 18:30, previsão de término 19:00.`;
-    } else if (currentHour >= 18 && currentHour <= 23) {
-        reportMessage = `Relatórios atualizados ${today} às 18:30. Próxima atualização amanhã às 11:30, previsão de término 12:00.`;
+        if (currentHour < 11) {
+            reportMessage = `Relatórios atualizados ${today} às 00:00. Próxima atualização às 11:30, previsão de término 12:00.`;
+        } else if (currentHour >= 11 && currentHour < 18) {
+            reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização às 18:30, previsão de término 19:00.`;
+        } else if (currentHour >= 18 && currentHour <= 23) {
+            reportMessage = `Relatórios atualizados ${today} às 18:30. Próxima atualização amanhã às 11:30, previsão de término 12:00.`;
     }
 
     document.getElementById('report-status').innerText = reportMessage;
@@ -341,14 +341,14 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', storedTheme);
-    const themeIcon = document.getElementById('theme-icon');
-    themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
+        const storedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', storedTheme);
+        const themeIcon = document.getElementById('theme-icon');
+        themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
 
-    const sidebarLinks = document.querySelectorAll('.sidebar a');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
     
-    sidebarLinks.forEach(link => {
+        sidebarLinks.forEach(link => {
         link.addEventListener('click', function() {
             sidebarLinks.forEach(link => link.classList.remove('selected')); // Remove a classe 'selected' de todos os links
             this.classList.add('selected'); // Adiciona a classe 'selected' ao link clicado

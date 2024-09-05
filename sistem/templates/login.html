@@ -20,10 +20,7 @@
             height: 100vh;
             font-family: Arial, sans-serif;
             margin: 0;
-            
-            
         }
-
 
         /* Container do logo */
         .logo-container {
@@ -85,6 +82,25 @@
         .login-container .checkbox-container input {
             margin-right: 20px;
         }
+
+        /* Estilo para o rodapé */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+        }
+
+        .footer a {
+            color: var(--footer-text);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -115,6 +131,20 @@
             {% endif %}
         </div>
     </div>
+
+    <!-- Rodapé -->
+    <footer class="footer" style="font-size: 10px;">
+        <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence da Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
+        
+        <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
+            <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
+        </a>
+        
+        <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text);">
+            <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
+        </a>   
+    </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -13,27 +13,25 @@
             background-size: cover;
             background-repeat: no-repeat;
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
         }
 
         /* Container do logo */
         .logo-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start; /* Alinha a logo à esquerda */
+            align-items: flex-start;
             width: 100%;
-            margin-top: 10px; /* Ajustar a logo mais para cima */
+            padding: 10px;
+            position: absolute; /* Mantém a logo fixa no topo */
+            top: 0;
+            left: 0;
         }
 
         .logo-container img {
-            max-width: 500px; /* Responsividade para a logo */
-            width: 150%;
+            max-width: 200px; /* Tamanho da logo */
             height: auto;
         }
 
@@ -42,7 +40,7 @@
             background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
             padding: 20px;
             border-radius: 10px; /* Bordas arredondadas */
-            margin: 10px;
+            margin: 10px auto;
             width: 100%;
             max-width: 300px; /* Responsividade */
         }
@@ -112,6 +110,10 @@
         /* Ajuste do container principal para manter o login afastado do rodapé */
         .main-container {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
     </style>
 </head>

@@ -9,7 +9,7 @@
     <style>
         /* Estilo para o corpo da página */
         body {
-            background-image: url('/static/images/tela.PNG');
+            background-image: var(--body-bg-gradient, radial-gradient(circle, #010f76 0%, #000000 100%));
             background-size: cover;
             background-repeat: no-repeat;
             color: white;
@@ -28,32 +28,40 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 10px; /* Ajustar a logo mais para cima */
+        }
+
+        .logo-container img {
+            max-width: 150px; /* Responsividade para a logo */
+            width: 100%;
+            height: auto;
         }
 
         /* Container do formulário de login */
         .login-container {
             background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px; /* Bordas arredondadas */
             margin: 10px;
-            width: 200px; /* Largura fixa para garantir que o conteúdo não quebre */
+            width: 100%;
+            max-width: 300px; /* Responsividade */
         }
 
         /* Estilo dos inputs do formulário */
         .login-container input {
             display: block;
             margin: 10px 0;
-            width: 89%;
+            width: 100%; /* Responsividade */
             padding: 10px;
             border-radius: 10px; /* Bordas arredondadas */
+            box-sizing: border-box;
         }
 
         /* Estilo do botão de login */
         .login-container button {
             padding: 10px;
-            width: 100%;
-            background-color: #63db95; /* Fundo cinza médio */
+            width: 100%; /* Responsividade */
+            background-color: #63db95; /* Fundo */
             border: none;
             color: white;
             border-radius: 5px;
@@ -62,7 +70,7 @@
 
         /* Efeito de hover no botão de login */
         .login-container button:hover {
-            background-color: #8F0000; /* Fundo cinza mais escuro no hover */
+            background-color: #8F0000;
         }
 
         /* Estilo dos labels do formulário */
@@ -70,17 +78,15 @@
             margin: 10px 0 5px;
         }
 
-        /* Estilo para o checkbox e o texto "Me manter conectado" na mesma linha */
+        /* Estilo para o checkbox e o texto "Me manter conectado" */
         .login-container .checkbox-container {
             display: flex;
             align-items: flex-start;
-            margin-top: 10px;
-            margin-right: 0px;
-            white-space: nowrap; /* Impede quebra de linha */
+            white-space: nowrap;
         }
 
         .login-container .checkbox-container input {
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         /* Estilo para o rodapé */
@@ -91,6 +97,7 @@
             text-align: center;
             background-color: rgba(0, 0, 0, 0.5);
             padding: 10px 0;
+            font-size: 10px;
         }
 
         .footer a {
@@ -104,7 +111,7 @@
 
         /* Ajuste do container principal para manter o login afastado do rodapé */
         .main-container {
-            margin-bottom: 20px; /* Adiciona 1cm (aproximadamente 20px) de espaço abaixo do login */
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -114,6 +121,7 @@
     <div class="logo-container">
         <img src="/static/images/logo.png" alt="Logo">
     </div>
+
     <!-- Container principal para alinhar o login e o texto "BEM VINDO" -->
     <div class="main-container">
         <!-- Container do formulário de login -->
@@ -138,14 +146,14 @@
     </div>
 
     <!-- Rodapé -->
-    <footer class="footer" style="font-size: 10px;">
+    <footer class="footer">
         <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence da Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
         
-        <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
+        <a href="https://wa.me/+556792017120" target="_blank">
             <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
         </a>
         
-        <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text);">
+        <a href="https://wa.me/+556792113061" target="_blank">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
         </a>   
     </footer>

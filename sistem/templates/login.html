@@ -24,7 +24,7 @@
         /* Container do logo */
         .logo-container {
             display: flex;
-            justify-content: center; /* Centraliza a logo horizontalmente */
+            justify-content: center;
             align-items: flex-start;
             width: 100%;
             padding: 10px;
@@ -33,37 +33,38 @@
             left: 0;
         }
 
-
         .logo-container img {
-            max-width: 500px; /* Tamanho da logo */
+            max-width: 500px;
             height: auto;
         }
 
         /* Container do formulário de login */
         .login-container {
-            background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 20px;
-            border-radius: 10px; /* Bordas arredondadas */
+            border-radius: 10px;
             margin: 10px auto;
             width: 100%;
-            max-width: 300px; /* Responsividade */
+            max-width: 300px;
+            position: relative; /* Para o z-index funcionar */
+            z-index: 1000; /* Eleva o login acima dos outros elementos */
         }
 
         /* Estilo dos inputs do formulário */
         .login-container input {
             display: block;
             margin: 10px 0;
-            width: 100%; /* Responsividade */
+            width: 100%;
             padding: 10px;
-            border-radius: 10px; /* Bordas arredondadas */
+            border-radius: 10px;
             box-sizing: border-box;
         }
 
         /* Estilo do botão de login */
         .login-container button {
             padding: 10px;
-            width: 100%; /* Responsividade */
-            background-color: #63db95; /* Fundo */
+            width: 100%;
+            background-color: #63db95;
             border: none;
             color: white;
             border-radius: 5px;
@@ -83,12 +84,18 @@
         /* Estilo para o checkbox e o texto "Me manter conectado" */
         .login-container .checkbox-container {
             display: flex;
-            align-items: flex-start;
-            white-space: nowrap;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .login-container .checkbox-container input {
             margin-right: 10px;
+        }
+
+        .login-container .checkbox-container label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Estilo para o rodapé */
@@ -118,6 +125,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            position: relative;
         }
     </style>
 </head>
@@ -163,8 +171,6 @@
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
         </a>   
     </footer>
-  
-
 
 </body>
 

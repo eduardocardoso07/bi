@@ -19,6 +19,8 @@ relatorios_urls = {
     'Marketing':'https://linktr.ee/centrooeste23',
     'Sales Development Representative':'https://app.powerbi.com/view?r=eyJrIjoiNjI4MDdiNzgtMGQyNC00OTgwLTliZGUtM2RkZDA5MzczN2JkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Produtividade Diária':'https://app.powerbi.com/view?r=eyJrIjoiOTE2YzVlZGUtNDg4NC00ZmIxLWExZTYtMGZiNWJlNjMyZDBmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Campanha Acelerando Execução':'https://app.powerbi.com/view?r=eyJrIjoiNzgwZjllMjYtNWU2YS00YTAxLTkwZWItZWEyMzc5YjUxYmUzIiwidCI6ImFjN',
+    'Revisão de Negócios':'https://app.powerbi.com/view?r=eyJrIjoiOTJlOWZiMmYtZDQxMi00ZGFjLWIzM2QtYWZmNDlmNjYzMjQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
     'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMjkwYTU3ZDktZjI0MC00Yjg1LWFlZGUtODI1ODAwNTVkNGFiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiM2IxY2UyOTktMzcxMy00NzZhLWEwNmQtNzlkMGYwZjA4NDU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

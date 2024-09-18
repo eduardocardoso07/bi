@@ -33,7 +33,7 @@ relatorios_urls = {
     'Potencial Área - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiNjFhMGQ4OTktOTQxYy00ZTk1LWJmYzUtMDQ5NmI1MTdiMmYwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Potencial Área - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiNTkxMGZkNDAtNmI0Yi00ZDU1LTliYmQtY2NhYWE4Yzk1YjI1IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'One Drive Gerente Consumo': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Euf-04YEZqxIrNmm3nL6yMQBr_bS2sKZ8VCP6rxbThErVQ',
-    'OneDrive Gerente Revenda': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/ErVC3-SlUBBEu_HbSujA6i0BASo3cHxFps8p3YdD8-erwA',
+    'OneDrive Gerente Revenda': 'https://colubrificantes-my.sharepoint.com/:f:/r/personal/sabrina_manzoli_colubrificantes_com_br/Documents/ONEDRIVE%20COMERCIAL/REVENDA?e=5%3a69b5e3c24c7444db80bb58e226a810b6&sharingv2=true&fromShare=true&at=9',
     
     'Acompanhamento Diario - CONSUMO - MS': 'https://app.powerbi.com/view?r=eyJrIjoiZjI2NjNiZmUtZjI4OC00MGM1LTk4OTItM2ViZDJiM2EyMDc0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Diario - CONSUMO - MT': 'https://app.powerbi.com/view?r=eyJrIjoiMjNmNTRhYWItMjY2MS00NjA2LThiYTAtNjkzMzMzOWFmZDAxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

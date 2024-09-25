@@ -22,6 +22,7 @@ relatorios_urls = {
     'Campanha Acelerando Execução':'https://app.powerbi.com/view?r=eyJrIjoiNzgwZjllMjYtNWU2YS00YTAxLTkwZWItZWEyMzc5YjUxYmUzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Revisão de Negócios':'https://app.powerbi.com/view?r=eyJrIjoiOTJlOWZiMmYtZDQxMi00ZGFjLWIzM2QtYWZmNDlmNjYzMjQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento de Vendas':'https://app.powerbi.com/view?r=eyJrIjoiOWI0MTU2ZmEtYTYwZi00YzJiLThhYzQtOWY1NjdjODNiNThmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária':'https://app.powerbi.com/view?r=eyJrIjoiOTE2YzVlZGUtNDg4NC00ZmIxLWExZTYtMGZiNWJlNjMyZDBmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
     'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMjkwYTU3ZDktZjI0MC00Yjg1LWFlZGUtODI1ODAwNTVkNGFiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiM2IxY2UyOTktMzcxMy00NzZhLWEwNmQtNzlkMGYwZjA4NDU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -35,7 +36,9 @@ relatorios_urls = {
     'Potencial Área - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiNTkxMGZkNDAtNmI0Yi00ZDU1LTliYmQtY2NhYWE4Yzk1YjI1IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'One Drive Gerente Consumo': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Euf-04YEZqxIrNmm3nL6yMQBr_bS2sKZ8VCP6rxbThErVQ',
     'OneDrive Gerente Revenda': 'https://colubrificantes-my.sharepoint.com/:f:/r/personal/sabrina_manzoli_colubrificantes_com_br/Documents/ONEDRIVE%20COMERCIAL/REVENDA?e=5%3a69b5e3c24c7444db80bb58e226a810b6&sharingv2=true&fromShare=true&at=9',
-    
+    'Produtividade Diária - Gerente Consumo':'https://app.powerbi.com/view?r=eyJrIjoiNmVmY2UyMDItZjY5Yi00NjJjLWExMzctOGM2MDFhMWVkMDc0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária - Gerente Revenda':'https://app.powerbi.com/view?r=eyJrIjoiMzc2MDI1NjQtNmI0OS00OTZmLWE5OGYtMzIxMzJiZTI1NmM2IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+
     'Acompanhamento Diario - CONSUMO - MS': 'https://app.powerbi.com/view?r=eyJrIjoiZjI2NjNiZmUtZjI4OC00MGM1LTk4OTItM2ViZDJiM2EyMDc0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Diario - CONSUMO - MT': 'https://app.powerbi.com/view?r=eyJrIjoiMjNmNTRhYWItMjY2MS00NjA2LThiYTAtNjkzMzMzOWFmZDAxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Diario - CONSUMO AGRI - MS': 'https://app.powerbi.com/view?r=eyJrIjoiMTU4ZWEwYTgtYzZmOS00Y2NiLTk3NDUtN2RiZmZiMmIxZTVjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -63,7 +66,14 @@ relatorios_urls = {
     'OneDrive - INSIDE': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Eh10RGR4UMpLhi-KtcA6xh0B-20RwZMoCZK5TOn6OP5gjQ?e=HF5GPt',
     'OneDrive - COORD CONSUMO - MT': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/En408h0ED8hMkcdiZP-6xMEBwOj8w-kEtdyIcfmnQWbztg?e=oYDgba',
     'OneDrive - COORD CONSUMO - MS': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EsV1cc3j85hCv2YOtlOqftoBRAqXSJ2waNgAUK2gd1VcEA?e=7zG7r8',
-
+    'Produtividade Diária CONS - AGRI - MS':'https://app.powerbi.com/view?r=eyJrIjoiMThmOTE1NTktYTdlMS00NDMzLWFmOTktNmUzMzk0MjAxNjE3IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária CONS - MS':'https://app.powerbi.com/view?r=eyJrIjoiZmY3MzU5OTQtMmM0Yi00MWUwLTlmMzctNzNmZWNmMWFjNDgzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária CONS - MT':'https://app.powerbi.com/view?r=eyJrIjoiZjc5MWU2NzUtMjYyZi00MzQ0LWE0MjQtMjUxZDU4NzczOGE0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária - INSIDE':'https://app.powerbi.com/view?r=eyJrIjoiN2M4YWVhZjQtNzAxMy00ZGZiLThiZGMtOTA3YzA4NzhmZWJlIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária - REVENDA - MS':'https://app.powerbi.com/view?r=eyJrIjoiZDVhNjgzNTEtYTI5OC00YjNhLWJiMTgtM2QyYjM0NzViMzE0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária - REVENDA - MT Norte':'https://app.powerbi.com/view?r=eyJrIjoiMzZlYzcwYzktNThjMS00OGUwLWFkNTUtNmQ0ZDIwZDcyNzc1IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Produtividade Diária - REVENDA - MT Sul':'https://app.powerbi.com/view?r=eyJrIjoiYjVhYjYzZjctZGI3Mi00ZWI3LTgyZTUtMzljMzM3Njc5MjUzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    
     'V10094 - CON - AGRI - MS': 'https://app.powerbi.com/view?r=eyJrIjoiMTFhYTE5MGYtNGJiNi00OWM4LWJmYzItOWMxOGZiNTdiYzUyIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - V10094': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EkD67IqV0OdEr03LLz1sUW4BVLcvkUaKa_gXAPMRtFF-8w?e=iHrXPX',
     'V10096 - CON - AGRI - MS': 'https://app.powerbi.com/view?r=eyJrIjoiYTk5OGVjZjQtN2JkMi00YTdmLTgzOWMtMWQ3OGY2MGFiMzkxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

@@ -14,9 +14,12 @@
             color: var(--body-text-color);
             font-family: 'Roboto', sans-serif;
             margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Garante que padding e bordas sejam considerados no tamanho */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Evita o overflow horizontal */
         }
 
         .d-flex {
@@ -210,11 +213,14 @@
 
         .content {
             flex-grow: 1;
-            padding: 20px;
+            padding-left: 250px; /* Espaço para o sidebar */
+            padding-right: 0;
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
             color: var(--body-text-color);
-            margin-left: 250px; /* Espaço suficiente para o sidebar */
+            box-sizing: border-box;
+            width: 100vw; /* Garante que o conteúdo ocupe toda a largura da viewport */
+            overflow-x: hidden; /* Evita rolagem horizontal */
         }
 
         .content iframe {
@@ -228,6 +234,8 @@
         }
 
         .footer {
+            width: 100%;
+            padding-left: 250px; /* Para alinhar com a área de conteúdo */
             background-color: var(--footer-bg);
             color: var(--footer-text);
             padding: 10px;
@@ -235,9 +243,8 @@
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            width: calc(100% - 250px); /* O footer não invade o sidebar */
-            position: relative; /* Isso impede que o footer flutue */
-            margin-left: 250px; /* Para alinhar com a área de conteúdo */
+            position: relative;
+            box-sizing: border-box;
         }
 
         @media (max-width: 768px) {

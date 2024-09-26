@@ -14,17 +14,10 @@
             color: var(--body-text-color);
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box; /* Garante que padding e bordas sejam considerados no tamanho */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden; /* Evita o overflow horizontal */
-        }
-
-        .d-flex {
-            display: flex;
-            min-height: calc(100vh - 40px); /* Ajusta para garantir que o conteúdo ocupe todo o espaço, deixando espaço para o footer */
+            padding-bottom: 20px;
         }
 
         /* Estilo do quadrado flutuante */
@@ -213,14 +206,10 @@
 
         .content {
             flex-grow: 1;
-            padding-left: 250px; /* Espaço para o sidebar */
-            padding-right: 0;
+            padding: 20px;
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
             color: var(--body-text-color);
-            box-sizing: border-box;
-            width: 100vw; /* Garante que o conteúdo ocupe toda a largura da viewport */
-            overflow-x: hidden; /* Evita rolagem horizontal */
         }
 
         .content iframe {
@@ -234,8 +223,6 @@
         }
 
         .footer {
-            width: 100%;
-            padding-left: 250px; /* Para alinhar com a área de conteúdo */
             background-color: var(--footer-bg);
             color: var(--footer-text);
             padding: 10px;
@@ -243,8 +230,9 @@
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: relative;
-            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -467,14 +455,9 @@
             <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
         </a>
         
-        <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
+        <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text);">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
-        </a>
-        
-        <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text);">
-            <i class="bi bi-whatsapp"></i> Diego Mietto | Auxiliar de Business Intelligence  
-        </a>
-
+        </a>   
     </footer>
     
 

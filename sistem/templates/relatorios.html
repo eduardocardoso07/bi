@@ -17,7 +17,11 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding-bottom: 20px;
+        }
+
+        .d-flex {
+            display: flex;
+            min-height: calc(100vh - 40px); /* Ajusta para garantir que o conteúdo ocupe todo o espaço, deixando espaço para o footer */
         }
 
         /* Estilo do quadrado flutuante */
@@ -210,6 +214,7 @@
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
             color: var(--body-text-color);
+            margin-left: 250px; /* Espaço suficiente para o sidebar */
         }
 
         .content iframe {
@@ -230,9 +235,9 @@
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            width: calc(100% - 250px); /* O footer não invade o sidebar */
+            position: relative; /* Isso impede que o footer flutue */
+            margin-left: 250px; /* Para alinhar com a área de conteúdo */
         }
 
         @media (max-width: 768px) {
@@ -457,7 +462,12 @@
         
         <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text);">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
-        </a>   
+        </a>
+        
+        <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text); margin-right: 15px;"></a>
+            <i class="bi bi-whatsapp"></i> Diego Mietto | Auxiliar de Business Intelligence  
+        </a>
+
     </footer>
     
 

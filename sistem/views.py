@@ -129,7 +129,7 @@ relatorios_urls = {
     'ISR08 - INSIDE': 'https://app.powerbi.com/view?r=eyJrIjoiOTk1MjlhYzUtNzMxYi00ODY5LTllYjEtMTBkNjM3MGM5ZDEzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - ISR08': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EkWEf1EHmyFAhJd0_fF4DlEBo9OHGof1HtuqVArXMm-I3Q?e=x0LA3u',
 
-    
+  
     'R10001 - REV - MS': 'https://app.powerbi.com/view?r=eyJrIjoiZjg5YjZmOGMtMmZjNi00NTkyLWJiNzUtMzAwZjU5NGU3MWNkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - R10001': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EkMh3Oi0OdNEqJz3p8DrPcgBK23QSG4N7Hs8fhm5aq-0fQ?e=8S8Swj',
     'R10002 - REV - MS': 'https://app.powerbi.com/view?r=eyJrIjoiMmFhZTBiNmQtNTYxMS00NTQ0LWE1ZmQtOTk0YzcxOGEyM2MxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -150,6 +150,9 @@ relatorios_urls = {
     'OneDrive - V10098': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ej6W9_81pphBpBjz4UqdKWcBuEZ2nDE-6NyXlwAhmyvfZQ?e=Hsm8IZ',
     'V10112 - REV - MS': 'https://app.powerbi.com/view?r=eyJrIjoiZDU2MmVjZWEtYThkOS00YWJlLWE1ODUtOTY1NWE1NDM3Yjk4IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - V10112': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EuyJp5oQYEJGrw4fH-i-dGEB-HB1BFdsKbkBF-yg6zhKQA?e=1WOuVt',
+    'R10001 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiYmFmOTY0ZWUtMDZjNC00ZTEyLTkxMTItYWJlNzdhZDA4OGZjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'R10004 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiYmY4ZjJmOWItMzY4ZC00OTRjLWE0NjQtNDU5NjI5MzgxMjdiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'R10008 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiODFjZGJkYTEtNjRmZS00Yzk4LWFjYzItODYzNDQwMDMxMzliIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
     'R20005 - REV - MT': 'https://app.powerbi.com/view?r=eyJrIjoiMjU3YTAwMzAtNWY2OC00MjE3LTlkODQtOTBlYmI0NGM1MzQ0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - R20005': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EuWu-RP9Hv9OorYpaKhgF4IBxW2cownGJUD_lR_RPMfcPQ?e=xpTC8P',

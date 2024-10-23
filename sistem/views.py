@@ -22,6 +22,8 @@ relatorios_urls = {
     'Revisão de Negócios':'https://app.powerbi.com/view?r=eyJrIjoiOTJlOWZiMmYtZDQxMi00ZGFjLWIzM2QtYWZmNDlmNjYzMjQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento de Vendas':'https://app.powerbi.com/view?r=eyJrIjoiOWI0MTU2ZmEtYTYwZi00YzJiLThhYzQtOWY1NjdjODNiNThmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Produtividade Diária':'https://app.powerbi.com/view?r=eyJrIjoiOTE2YzVlZGUtNDg4NC00ZmIxLWExZTYtMGZiNWJlNjMyZDBmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Analise de Preço':'https://app.powerbi.com/reportEmbed?reportId=3b575212-1d76-445e-bdb8-3551b79d8f6f&autoAuth=true&ctid=ac7d8a72-0a8b-44ce-96fc-7d1aa0ecfc31',
+
 
     'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMjkwYTU3ZDktZjI0MC00Yjg1LWFlZGUtODI1ODAwNTVkNGFiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiM2IxY2UyOTktMzcxMy00NzZhLWEwNmQtNzlkMGYwZjA4NDU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
@@ -153,6 +155,7 @@ relatorios_urls = {
     'R10001 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiYmFmOTY0ZWUtMDZjNC00ZTEyLTkxMTItYWJlNzdhZDA4OGZjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'R10004 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiYmY4ZjJmOWItMzY4ZC00OTRjLWE0NjQtNDU5NjI5MzgxMjdiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'R10008 - Cliente Sem Compra': 'https://app.powerbi.com/view?r=eyJrIjoiODFjZGJkYTEtNjRmZS00Yzk4LWFjYzItODYzNDQwMDMxMzliIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+
 
     'R20005 - REV - MT': 'https://app.powerbi.com/view?r=eyJrIjoiMjU3YTAwMzAtNWY2OC00MjE3LTlkODQtOTBlYmI0NGM1MzQ0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - R20005': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EuWu-RP9Hv9OorYpaKhgF4IBxW2cownGJUD_lR_RPMfcPQ?e=xpTC8P',

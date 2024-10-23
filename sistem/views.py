@@ -22,7 +22,7 @@ relatorios_urls = {
     'Revisão de Negócios':'https://app.powerbi.com/view?r=eyJrIjoiOTJlOWZiMmYtZDQxMi00ZGFjLWIzM2QtYWZmNDlmNjYzMjQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento de Vendas':'https://app.powerbi.com/view?r=eyJrIjoiOWI0MTU2ZmEtYTYwZi00YzJiLThhYzQtOWY1NjdjODNiNThmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Produtividade Diária':'https://app.powerbi.com/view?r=eyJrIjoiOTE2YzVlZGUtNDg4NC00ZmIxLWExZTYtMGZiNWJlNjMyZDBmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-    'Analise de Preço':'https://app.powerbi.com/reportEmbed?reportId=3b575212-1d76-445e-bdb8-3551b79d8f6f&autoAuth=true&ctid=ac7d8a72-0a8b-44ce-96fc-7d1aa0ecfc31',
+    'Análise de Preço':'https://app.powerbi.com/view?r=eyJrIjoiM2JjOTI4MGMtNDY5Yi00YmUwLWI2MzYtNWVmZjVkZjkyOGJlIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
 
     'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMjkwYTU3ZDktZjI0MC00Yjg1LWFlZGUtODI1ODAwNTVkNGFiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

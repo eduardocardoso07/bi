@@ -223,61 +223,61 @@
         }
 
         .footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 10px;
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            font-weight: 100;
-            position: relative;
-            height: 100vh; /* O rodapé ocupa 100% da altura da página */
+        background-color: var(--footer-bg);
+        color: var(--footer-text);
+        padding: 10px;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 100;
+        position: relative;
+        height: 10vh; /* O rodapé ocupa 100% da altura da página */
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .sidebar {
             width: 100%;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 10px;
+            position: relative;
+            box-shadow: none;
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                padding: 10px;
-                position: relative;
-                box-shadow: none;
-            }
-
-            .navbar {
-                font-size: 12px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar .report-status {
-                margin: 10px 0 0 0;
-            }
-
-            .content {
-                padding: 10px;
-                display: none; /* O rodapé continuará ocupando toda a tela em telas menores */
-            }
-
-            .footer {
-                font-size: 10px;
-            }
+        .navbar {
+            font-size: 12px;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        @media (max-width: 576px) {
-            .navbar span,
-            .navbar a {
-                display: block;
-                margin: 5px 0;
-            }
+        .navbar .report-status {
+            margin: 10px 0 0 0;
+        }
 
-            .content iframe {
-                height: 60vh;
-            }
+        .content {
+            padding: 10px;
+            display: none; /* O rodapé continuará ocupando toda a tela em telas menores */
+        }
+
+        .footer {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .navbar span,
+        .navbar a {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .content iframe {
+            height: 60vh;
+        }
         }
 
         /* Adicione o CSS para tentar ocultar os botões de compartilhamento */

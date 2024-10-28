@@ -230,11 +230,13 @@
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: absolute;
+            position: fixed; /* Fixa o rodapé no final da página visível */
             bottom: 0;
             width: 100%;
+            z-index: 1; /* Coloca o rodapé acima de outros elementos */
         }
 
+        /* Responsividade */
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;

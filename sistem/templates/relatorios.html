@@ -230,10 +230,13 @@
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: fixed; /* Fixa o rodapé no final da página visível */
-            bottom: 0;
+            position: relative;
+            height: 100vh; /* O rodapé ocupa 100% da altura da página */
             width: 100%;
-            z-index: 1; /* Coloca o rodapé acima de outros elementos */
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Responsividade */
@@ -257,6 +260,7 @@
 
             .content {
                 padding: 10px;
+                display: none; /* O rodapé continuará ocupando toda a tela em telas menores */
             }
 
             .footer {

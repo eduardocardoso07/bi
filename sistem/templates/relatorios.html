@@ -225,22 +225,16 @@
         .footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
+            padding: 10px;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: relative;
-            height: 100vh; /* O rodapé ocupa 100% da altura da tela */
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            z-index: 1;
-            display: flex;
-            align-items: center; /* Centraliza verticalmente */
-            justify-content: center; /* Centraliza horizontalmente */
-            padding: 0; /* Remove o padding para uma centralização exata */
-            margin: 0; /* Remove a margem para evitar deslocamento */
         }
 
-        /* Responsividade */
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -261,7 +255,6 @@
 
             .content {
                 padding: 10px;
-                display: none; /* Esconde o conteúdo para o rodapé ocupar toda a tela */
             }
 
             .footer {
@@ -269,18 +262,16 @@
             }
         }
 
+        @media (max-width: 576px) {
+            .navbar span,
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+            }
 
-
-    @media (max-width: 576px) {
-        .navbar span,
-        .navbar a {
-            display: block;
-            margin: 5px 0;
-        }
-
-        .content iframe {
-            height: 60vh;
-        }
+            .content iframe {
+                height: 60vh;
+            }
         }
 
         /* Adicione o CSS para tentar ocultar os botões de compartilhamento */

@@ -66,6 +66,7 @@ relatorios_urls = {
     'OneDrive - COORD REVENDA - MT Norte': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EuAddOfY2c5DmoW80Gr4rrcBocXpRhF4xQSP2RkHFrut8A?e=Fh4rjE',
     'OneDrive - INSIDE': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Eh10RGR4UMpLhi-KtcA6xh0B-20RwZMoCZK5TOn6OP5gjQ?e=HF5GPt',
     'OneDrive - COORD CONSUMO - MT': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/En408h0ED8hMkcdiZP-6xMEBwOj8w-kEtdyIcfmnQWbztg?e=oYDgba',
+    'OneDrive - COORD CONSUMO - AGRI - MS': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Eho5jGEx_nBJs4UtiQbU8fgBCDllr0AQg53KgjWos3YsTA?e=ZnNiIA',
     'OneDrive - COORD CONSUMO - MS': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EsV1cc3j85hCv2YOtlOqftoBRAqXSJ2waNgAUK2gd1VcEA?e=7zG7r8',
     'Produtividade Diária CONS - AGRI - MS':'https://app.powerbi.com/view?r=eyJrIjoiMThmOTE1NTktYTdlMS00NDMzLWFmOTktNmUzMzk0MjAxNjE3IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Produtividade Diária CONS - MS':'https://app.powerbi.com/view?r=eyJrIjoiZmY3MzU5OTQtMmM0Yi00MWUwLTlmMzctNzNmZWNmMWFjNDgzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

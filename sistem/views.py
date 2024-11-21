@@ -16,7 +16,6 @@ relatorios_urls = {
     'OneDrive - Business Intelligence': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ein-hXyOGLFCh-FVwHmmHucBVpWVBOoGh5nSMg4w_g2j7w?e=BnvepW',
     'OneDrive - Diretor e Gerente Geral': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ein-hXyOGLFCh-FVwHmmHucBVpWVBOoGh5nSMg4w_g2j7w?e=VBBIZH',
     'Base de conhecimento Tecnologia da Informação':'https://linktr.ee/ti.colub',
-    'Marketing':'https://linktr.ee/centrooeste23',
     'Sales Development Representative':'https://app.powerbi.com/view?r=eyJrIjoiNjI4MDdiNzgtMGQyNC00OTgwLTliZGUtM2RkZDA5MzczN2JkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Campanha Acelerando Execução':'https://app.powerbi.com/view?r=eyJrIjoiNzgwZjllMjYtNWU2YS00YTAxLTkwZWItZWEyMzc5YjUxYmUzIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Revisão de Negócios':'https://app.powerbi.com/view?r=eyJrIjoiOTJlOWZiMmYtZDQxMi00ZGFjLWIzM2QtYWZmNDlmNjYzMjQxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

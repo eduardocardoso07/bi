@@ -235,7 +235,7 @@ def relatorios_view(request):
     relatorios = request.session.get('relatorios', [])
     relatorios_disponiveis = [{'nome': r, 'url': relatorios_urls.get(r, '#')} for r in relatorios]
 
-    # Obter o relatório selecionado
+    # Obtem o relatório selecionado
     relatorio_nome = request.GET.get('relatorio')
     relatorio_selecionado = relatorios_urls.get(relatorio_nome) if relatorio_nome in relatorios else None
 

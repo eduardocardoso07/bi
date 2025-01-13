@@ -360,10 +360,10 @@
 
         document.addEventListener("DOMContentLoaded", () => {
         // Cria o elemento toast e o insere no corpo
-        const toastHTML = `
+        const toastHTML = 
         <div class="toast position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
             <div class="toast-header">
-                <img src="https://via.placeholder.com/20" class="rounded me-2" alt="Logo">
+                <img src="https://via.placeholder.com/20" class="rounded me-2" alt="Logo"/>
                 <strong class="me-auto">Sistema</strong>
                 <small>Agora</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -371,7 +371,7 @@
             <div class="toast-body">
                 Bem-vindo(a) ao sistema!
             </div>
-        </div>`;;
+        </div>;;
         
         document.body.insertAdjacentHTML('beforeend', toastHTML);
 

@@ -11,16 +11,14 @@
     <title>Sistema Web</title>
     <style>
         body {
-            background: 
-                linear-gradient(to right, #444444 75%, #5f0000 25%) top,
-                linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, #ffffff 50%);
-            background-size: 100% 50%, 100% 100%;
-            background-repeat: no-repeat, no-repeat;
-            color: rgb(255, 255, 255);
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+        background: linear-gradient(to right, #444444 50%, #5f0000 50%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: rgb(255, 255, 255);
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
         .logo-container {
             display: flex;
@@ -58,7 +56,7 @@
             padding: 10px;
             border-radius: 10px;
             border: 1px solid rgba(0, 123, 255, 0);
-            background-color: rgba(192, 192, 192, 0.658);
+            background-color: rgb(255, 255, 255);
             color: rgb(0, 0, 0);
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
@@ -143,7 +141,7 @@
         }
 
         .footer a {
-            color: black;
+            color: var(--footer-text);
             text-decoration: none;
         }
 

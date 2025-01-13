@@ -356,15 +356,6 @@
 
             updateReportStatus();
             window.addEventListener('scroll', adjustFloatingSquare);
-
-            // Evento para alterar a cor do fundo do iframe
-            const colorPicker = document.getElementById('iframe-color-picker');
-            const iframe = document.getElementById('relatorio-iframe');
-            if (colorPicker && iframe) {
-                colorPicker.addEventListener('input', (event) => {
-                    iframe.style.backgroundColor = event.target.value;
-                });
-            }
         });
     </script>
 </head>
@@ -394,10 +385,6 @@
 
         <main class="content">
             {% if relatorio_selecionado %}
-                <div class="mb-3">
-                    <label for="iframe-color-picker">Alterar cor do fundo do relatório:</label>
-                    <input type="color" id="iframe-color-picker" value="#ffffff">
-                </div>
                 {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o relatório</a>.

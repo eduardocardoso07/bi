@@ -290,26 +290,16 @@
         }
     </style>
      <script>
-        // Define o tempo de expiração em milissegundos (1 hora = 3600 segundos = 3600000 ms)
+        // Configurações de sessão e tema
         const sessionExpiryTime = 14400000;
+        setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
 
-        // Redireciona automaticamente para a página de login após a expiração
-        setTimeout(function(){
-            window.location.href = "{% url 'login' %}";
-        }, sessionExpiryTime);
-
-        // Monitora a atividade online do usuário e redefine o temporizador a cada nova atividade
         function resetTimer() {
             clearTimeout(timer);
-            timer = setTimeout(function(){
-                window.location.href = "{% url 'login' %}";
-            }, sessionExpiryTime);
+            timer = setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
         }
 
-        // Eventos monitorados para detectar atividade do usuário
-        let timer = setTimeout(function(){
-            window.location.href = "{% url 'login' %}";
-        }, sessionExpiryTime);
+        let timer = setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
 
         window.onload = resetTimer;
         window.onmousemove = resetTimer;
@@ -327,74 +317,58 @@
             themeIcon.className = newTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
         }
 
-        function formatDate(date) {
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            return `${day}/${month}/${year}`;
-        }
-
         function updateReportStatus() {
-        const now = new Date();
-        const options = { timeZone: 'America/Campo_Grande', hour: 'numeric', hour12: false };
-        const currentHour = new Intl.DateTimeFormat('pt-BR', options).format(now);
-        const today = formatDate(new Date());
-        const tomorrow = formatDate(new Date(now.getTime() + 24 * 60 * 60 * 1000));
-        let reportMessage = '';
+            const now = new Date();
+            const currentHour = now.getHours();
+            const today = now.toLocaleDateString('pt-BR');
+            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR');
+            let reportMessage = '';
 
-        if (currentHour < 11) {
-            reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 11:30, previsão de término 12:00.`;
-        } else if (currentHour >= 11 && currentHour < 23) {
-            reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização amanhã as 08:00.`;
+            if (currentHour < 11) {
+                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 11:30, previsão de término 12:00.`;
+            } else if (currentHour >= 11 && currentHour < 23) {
+                reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização amanhã às 08:00.`;
+            }
+
+            document.getElementById('report-status').innerText = reportMessage;
         }
-
-    document.getElementById('report-status').innerText = reportMessage;
-}
-
 
         function adjustFloatingSquare() {
             const scrollPosition = window.scrollY;
             const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const newHeight = 3 + (scrollPosition / documentHeight) * 10; // Altura ajustada dinamicamente
-            const floatingSquare = document.querySelector('.floating-square');
-            floatingSquare.style.height = `${newHeight}cm`;
+            const newHeight = 3 + (scrollPosition / documentHeight) * 10;
+            document.querySelector('.floating-square').style.height = `${newHeight}cm`;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-        const storedTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', storedTheme);
-        const themeIcon = document.getElementById('theme-icon');
-        themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
+            const storedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', storedTheme);
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
 
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-    
-        sidebarLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            sidebarLinks.forEach(link => link.classList.remove('selected')); // Remove o 'selected' de todos os links
-            this.classList.add('selected'); // Adiciona o 'selected' ao link clicado
-        });
-    });
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    sidebarLinks.forEach(link => link.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedRelatorio = urlParams.get('relatorio');
-    if (selectedRelatorio) {
-        sidebarLinks.forEach(link => {
-            if (link.href.includes(selectedRelatorio)) {
-                link.classList.add('selected');
-            } else {
-                link.classList.remove('selected');
+            updateReportStatus();
+            window.addEventListener('scroll', adjustFloatingSquare);
+
+            // Evento para alterar a cor do fundo do iframe
+            const colorPicker = document.getElementById('iframe-color-picker');
+            const iframe = document.getElementById('relatorio-iframe');
+            if (colorPicker && iframe) {
+                colorPicker.addEventListener('input', (event) => {
+                    iframe.style.backgroundColor = event.target.value;
+                });
             }
         });
-    }
-
-    updateReportStatus();
-    window.addEventListener('scroll', adjustFloatingSquare); // Adiciona barra de rolagem
-});
-
     </script>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="navbar-left">
             <span>Bem-vindo(a), {{ usuario }}.</span>
@@ -409,7 +383,6 @@
     </nav>
 
     <div class="d-flex flex-column flex-md-row">
-        <!-- Sidebar -->
         <div class="sidebar">
             <h5>Relatórios Disponíveis</h5>
             <div>
@@ -419,9 +392,12 @@
             </div>
         </div>
 
-        <!-- Content Area -->
         <main class="content">
             {% if relatorio_selecionado %}
+                <div class="mb-3">
+                    <label for="iframe-color-picker">Alterar cor do fundo do relatório:</label>
+                    <input type="color" id="iframe-color-picker" value="#ffffff">
+                </div>
                 {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o relatório</a>.
@@ -431,7 +407,7 @@
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o Linktree</a>.
                     </p>
                 {% else %}
-                    <iframe src="{{ relatorio_selecionado }}" frameborder="0"></iframe>
+                    <iframe id="relatorio-iframe" src="{{ relatorio_selecionado }}" frameborder="0" style="background-color: #ffffff;"></iframe>
                 {% endif %}
             {% else %}
                 <p>Selecione um relatório à esquerda para visualizá-lo.</p>
@@ -439,26 +415,20 @@
         </main>
     </div>
 
-    <!-- Formulário de logout -->
     <form id="logout-form" action="{% url 'logout' %}" method="POST" class="logout-form">
         {% csrf_token %}
     </form>
 
-    <!-- Rodapé da pagina -->
     <footer class="footer" style="font-size: 10px;">
         <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
-        
         <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
         </a>
-        
         <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text);">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
         </a>
-  
     </footer>
 
-    <!-- Adicona quadrado flutuante para impedir o compartilhamento -->
     <div class="floating-square"></div>
 </body>
 </html>

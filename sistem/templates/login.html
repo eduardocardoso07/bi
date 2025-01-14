@@ -86,32 +86,47 @@
             background-color: #8F0000;
         }
 
-        .custom-checkbox {
-            width: 16px;
-            height: 16px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+        .login-container label {
+            margin: 10px 0 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: black;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
             appearance: none;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 0;
-            cursor: pointer;
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
             position: relative;
+            margin-right: 10px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .custom-checkbox:checked {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .custom-checkbox:checked::before {
+        .checkbox-container input[type="checkbox"]:checked::before {
             content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
+            display: block;
             width: 12px;
             height: 12px;
-            background-color: #fff;
+            border-radius: 50%;
+            background-color: #760101;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 5px #ff0000;
         }
 
         .footer {
@@ -152,21 +167,22 @@
 
     <div class="main-container">
         <div class="login-container">
-            <form method="POST">
-                {% csrf_token %}
-                <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Campo para escrever o usuario" required>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" placeholder="Campo para inserir a senha" required>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                <button type="submit">Acessar</button>
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputUsername" class="form-label">Nome do Usuário</label>
+                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp">
+                <div id="usernameHelp" class="form-text">Nunca compartilharemos seu nome de usuário com ninguém.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Me manter conectado</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            {% if erro %}
-            <p style="color: red;">{{ erro }}</p>
-            {% endif %}
         </div>
     </div>
 

@@ -148,20 +148,15 @@
         <div class="login-container">
             <form method="POST">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <label for="usuario" class="form-label">Nome do Usuário:</label>
-                    <input type="text" id="usuario" name="usuario" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
-                    <div id="usernameHelp" class="form-text">Nunca compartilharemos seu nome de usuário e senha com ninguém.</div>
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Me manter conectado</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Acessar</button>
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="manter_conectado" name="manter_conectado">
+                    <label for="manter_conectado">Me manter conectado</label>
+                </div>
+                <button type="submit">Acessar</button>
             </form>
             {% if erro %}
             <p style="color: red;">{{ erro }}</p>

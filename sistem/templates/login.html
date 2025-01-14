@@ -15,7 +15,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         color: rgb(255, 255, 255);
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
         margin: 0;
         padding: 0;
     }
@@ -36,76 +36,57 @@
             height: auto;
         }
 
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            z-index: 2;
+            margin-top: calc(7cm + 10px);
+        }
+
         .login-container {
             background-color: rgba(255, 255, 255, 0.39);
             padding: 20px;
             border-radius: 10px;
-            margin: 20px auto;
             width: 100%;
-            max-width: 300px;
-            position: relative;
-            top: 25px; /* Descer o container 0.2cm */
-            z-index: 10; /* Garante que o login sempre esteja na frente */
-            /* Removido o box-shadow vermelho */
+            max-width: 400px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .login-container input {
+        .login-container .form-label,
+        .login-container .form-text,
+        .login-container .form-check-label {
+            color: #000;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .login-container .form-control {
             display: block;
             margin: 10px 0;
             width: 100%;
             padding: 10px;
             border-radius: 10px;
             border: 1px solid rgba(0, 123, 255, 0);
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(250, 250, 250);
             color: rgb(0, 0, 0);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             font-size: 16px;
             box-shadow: 0 0 8px rgba(0, 149, 255, 0);
-            outline: none; /* Remove a linha preta */
+            outline: none;
         }
 
-        .login-container input:focus {
-            outline: none; /* Remove a linha preta ao focar nos campos de preenchimentos */
-            border: 1px solid rgba(255, 0, 0, 0.7); /* Adiciona uma borda mais suave no foco do preenchimento */
+        .login-container .form-control:focus {
+            outline: none;
+            border: 1px solid rgba(255, 0, 0, 0.7);
             box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
         }
 
-        .login-container button {
-            padding: 10px;
-            width: 100%;
-            background-color: #63db95;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            font-family: 'Roboto', sans-serif;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-container button:hover {
-            background-color: #8F0000;
-        }
-
-        .login-container label {
-            margin: 10px 0 5px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            color: black;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .checkbox-container input[type="checkbox"] {
+        .login-container .form-check-input {
             appearance: none;
             -webkit-appearance: none;
             background-color: transparent;
             border: 2px solid #ff0000;
-            border-radius: 50%;
             width: 20px;
             height: 20px;
             position: relative;
@@ -115,18 +96,25 @@
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .checkbox-container input[type="checkbox"]:checked::before {
-            content: '';
-            display: block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #760101;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 5px #ff0000;
+        .login-container .form-check-input:checked {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+
+        .login-container .btn {
+            padding: 10px;
+            width: 100%;
+            background-color: #63db95;
+            border: none;
+            color: rgb(0, 0, 0);
+            border-radius: 5px;
+            font-family: 'Source Sans Pro', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container .btn:hover {
+            background-color: #8F0000;
         }
 
         .footer {
@@ -137,7 +125,7 @@
             background-color: rgba(0, 0, 0, 0);
             padding: 10px 0;
             font-size: 10px;
-            z-index: 1; /* Coloca o footer em um plano mais baixo */
+            z-index: 1;
         }
 
         .footer a {
@@ -147,15 +135,6 @@
 
         .footer a:hover {
             text-decoration: underline;
-        }
-
-        .main-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            z-index: 2; /* Garante que o conteúdo principal fique atrás do login */
         }
     </style>
 </head>

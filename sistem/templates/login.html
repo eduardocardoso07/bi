@@ -149,12 +149,12 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="exampleInputUsername" class="form-label">Nome do Usuário:</label>
-                    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp">
+                    <label for="usuario" class="form-label">Nome do Usuário:</label>
+                    <input type="text" id="usuario" name="usuario" required>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Senha:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
                     <div id="usernameHelp" class="form-text">Nunca compartilharemos seu nome de usuário e senha com ninguém.</div>
                   </div>
                   <div class="mb-3 form-check">
@@ -162,7 +162,7 @@
                     <label class="form-check-label" for="exampleCheck1">Me manter conectado</label>
                   </div>
                   <button type="submit" class="btn btn-primary">Acessar</button>
-                </form>
+            </form>
             {% if erro %}
             <p style="color: red;">{{ erro }}</p>
             {% endif %}

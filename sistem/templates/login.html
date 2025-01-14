@@ -39,9 +39,10 @@
         .main-container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             z-index: 2;
+            margin-top: 1cm;
         }
 
         .login-container {
@@ -72,6 +73,35 @@
             outline: none;
             border: 1px solid rgba(255, 0, 0, 0.7);
             box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+        }
+
+        .login-container .form-check-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            margin-right: 10px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-container .form-check-input:checked::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ff0000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 5px #ff0000;
         }
 
         .login-container .btn {
@@ -121,19 +151,19 @@
         <div class="login-container">
             <form>
               <div class="mb-3">
-                <label for="exampleInputUsername" class="form-label">Nome do Usuário</label>
+                <label for="exampleInputUsername" class="form-label">Usuário:</label>
                 <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp">
                 <div id="usernameHelp" class="form-text">Nunca compartilharemos seu nome de usuário com ninguém.</div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <label for="exampleInputPassword1" class="form-label">Senha:</label>
                 <input type="password" class="form-control" id="exampleInputPassword1">
               </div>
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label class="form-check-label" for="exampleCheck1">Me manter conectado</label>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Acessar</button>
             </form>
         </div>
     </div>

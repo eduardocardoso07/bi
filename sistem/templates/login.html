@@ -105,7 +105,7 @@
             -webkit-appearance: none;
             background-color: transparent;
             border: 2px solid #ff0000;
-            border-radius: 50%;
+            border-radius: 0; /* Alterado para quadrado */
             width: 20px;
             height: 20px;
             position: relative;
@@ -120,7 +120,6 @@
             display: block;
             width: 12px;
             height: 12px;
-            border-radius: 50%;
             background-color: #760101;
             position: absolute;
             top: 50%;
@@ -165,24 +164,22 @@
         <img src="/static/images/logo.png" alt="Logo">
     </div>
 
-    <div class="main-container">
-        <div class="login-container">
-            <form method="POST">
-                {% csrf_token %}
-                <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" name="usuario" required>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="manter_conectado" name="manter_conectado">
-                    <label for="manter_conectado">Me manter conectado</label>
-                </div>
-                <button type="submit">Acessar</button>
-            </form>
-            {% if erro %}
-            <p style="color: red;">{{ erro }}</p>
-            {% endif %}
-        </div>
+    <div class="login-container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            <div class="checkbox-container">
+                <input type="checkbox" id="manter_conectado" name="manter_conectado" style="border-radius: 0;">
+                <label for="manter_conectado">Me manter conectado</label>
+            </div>
+            <button type="submit">Acessar</button>
+        </form>
+        {% if erro %}
+        <p style="color: red;">{{ erro }}</p>
+        {% endif %}
     </div>
 
     <footer class="footer">

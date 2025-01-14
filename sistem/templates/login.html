@@ -86,47 +86,32 @@
             background-color: #8F0000;
         }
 
-        .login-container label {
-            margin: 10px 0 5px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            color: black;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            appearance: none;
+        .custom-checkbox {
+            width: 16px;
+            height: 16px;
             -webkit-appearance: none;
-            background-color: transparent;
-            border: 2px solid #ff0000;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            position: relative;
-            margin-right: 10px;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 0;
             cursor: pointer;
-            outline: none;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
-        .checkbox-container input[type="checkbox"]:checked::before {
+        .custom-checkbox:checked {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .custom-checkbox:checked::before {
             content: '';
-            display: block;
+            position: absolute;
+            top: 2px;
+            left: 2px;
             width: 12px;
             height: 12px;
-            border-radius: 50%;
-            background-color: #760101;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 5px #ff0000;
+            background-color: #fff;
         }
 
         .footer {
@@ -170,11 +155,11 @@
             <form method="POST">
                 {% csrf_token %}
                 <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" name="usuario" required>
+                <input type="text" id="usuario" name="usuario" placeholder="Campo para escrever o usuario" required>
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+                <input type="password" id="senha" name="senha" placeholder="Campo para inserir a senha" required>
                 <div class="checkbox-container">
-                    <input type="checkbox" id="manter_conectado" name="manter_conectado">
+                    <input type="checkbox" id="manter_conectado" name="manter_conectado" class="custom-checkbox">
                     <label for="manter_conectado">Me manter conectado</label>
                 </div>
                 <button type="submit">Acessar</button>

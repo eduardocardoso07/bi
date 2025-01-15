@@ -460,12 +460,12 @@
                 // Verificar se o horário está no intervalo
                 if (
                     (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-                    (currentHour === 16 && currentMinutes >= 30 && currentMinutes <= 59)
+                    (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 29)
                 ) {
                     // Definir a mensagem com base no horário
                     if (currentHour === 7) {
                         toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 08:00`;
-                    } else if (currentHour === 16) {
+                    } else if (currentHour === 13) {
                         toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 17:00`;
                     }
 
@@ -483,13 +483,13 @@
         <style>
             /* Estilo para o Toast */
             .toast {
-                background: linear-gradient(45deg, #444444, #5f0000);
+                background: linear-gradient(45deg, #5f0000, #444444);
                 color: white;
                 font-family: 'Source Sans Pro', sans-serif;
             }
 
             .toast-header {
-                background: linear-gradient(45deg, #444444, #5f0000);
+                background: linear-gradient(45deg, #5f0000, #444444);
                 color: white;
                 font-family: 'Source Sans Pro', sans-serif;
             }

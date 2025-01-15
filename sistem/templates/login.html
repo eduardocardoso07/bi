@@ -11,14 +11,14 @@
     <title>Sistema Web</title>
     <style>
         body {
-        background: linear-gradient(to right, #444444 50%, #5f0000 50%);
-        background-size: cover;
-        background-repeat: no-repeat;
-        color: rgb(255, 255, 255);
-        font-family: 'Source Sans Pro', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+            background: linear-gradient(to right, #444444 50%, #5f0000 50%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: rgb(255, 255, 255);
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
         .logo-container {
             display: flex;
@@ -125,9 +125,7 @@
             padding: 10px 0;
             font-size: 10px;
             z-index: 1;
-            top: calc(100vh - 2cm);
         }
-
 
         .footer a {
             color: var(--footer-text);
@@ -145,7 +143,6 @@
         <img src="/static/images/logo.png" alt="Logo">
     </div>
 
-    
     <div class="main-container">
         <div class="login-container">
             <form method="POST">
@@ -170,23 +167,34 @@
             {% endif %}
         </div>
     </div>
-    
 
     <footer class="footer">
         <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
-        
+
         <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
+            <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence
         </a>
-        
+
         <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
         </a>
-        
+
         <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Eduardo Cardoso | Assistente de Business Intelligence
         </a>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginContainer = document.querySelector('.login-container');
+            const footer = document.querySelector('.footer');
+
+            if (loginContainer && footer) {
+                const loginRect = loginContainer.getBoundingClientRect();
+                footer.style.top = `${loginRect.bottom + 20}px`; // 20px = 2cm aproximadamente
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -325,9 +325,9 @@
             let reportMessage = '';
 
             if (currentHour < 11) {
-                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 11:30, previsão de término 12:00.`;
+                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 13:30, previsão de término 12:00.`;
             } else if (currentHour >= 11 && currentHour < 23) {
-                reportMessage = `Relatórios atualizados ${today} às 11:30. Próxima atualização amanhã às 08:00.`;
+                reportMessage = `Relatórios atualizados ${today} às 13:30. Próxima atualização amanhã às 08:00.`;
             }
 
             document.getElementById('report-status').innerText = reportMessage;
@@ -357,57 +357,6 @@
             updateReportStatus();
             window.addEventListener('scroll', adjustFloatingSquare);
         });
-
-        // Novo script para exibir alertas dinâmicos com base no horário
-        function showAlertBasedOnTime() {
-            const now = new Date();
-            const options = { timeZone: 'America/Campo_Grande' };
-            const localTime = new Date(now.toLocaleString('en-US', options));
-            const hour = localTime.getHours();
-            const minutes = localTime.getMinutes();
-            const alertContainer = document.getElementById('dynamic-alert');
-            let alertHTML = '';
-
-            // Verifica se está entre 15:00 e 15:29
-            if (hour === 15 && minutes >= 0 && minutes <= 29) {
-                alertHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </symbol>
-                </svg>
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
-                        <use xlink:href="#exclamation-triangle-fill" />
-                    </svg>
-                    <div>
-                        Relatórios em atualização, por gentileza feche a página, previsão de término 13:30hrs
-                    </div>
-                </div>`;
-            } 
-            // Verifica se está entre 07:00 e 07:29
-            else if (hour === 7 && minutes >= 0 && minutes <= 29) {
-                alertHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </symbol>
-                </svg>
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
-                        <use xlink:href="#exclamation-triangle-fill" />
-                    </svg>
-                    <div>
-                        Relatórios em atualização, por gentileza feche a página, previsão de término 08:00hrs
-                    </div>
-                </div>`;
-            }
-
-            alertContainer.innerHTML = alertHTML;
-        }
-
-        document.addEventListener('DOMContentLoaded', showAlertBasedOnTime);
-
     </script>
 </head>
 <body>
@@ -474,5 +423,32 @@
     </footer>
 
     <div class="floating-square"></div>
+
+    <!-- Toast de Notificação -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header">
+                <strong class="me-auto">Notificação</strong>
+                <small class="text-body-secondary">Agora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+            </div>
+            <div class="toast-body">
+                Você saiu da tela de login com sucesso.
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mostrar o toast ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            const toastElement = document.querySelector('.toast');
+            if (toastElement) {
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+            }
+        });
+    </script>
 </body>
 </html>

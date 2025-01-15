@@ -464,9 +464,9 @@
                 ) {
                     // Definir a mensagem com base no horário
                     if (currentHour === 7) {
-                        toastMessageElement.innerText = `Olá ${usuario}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 08:00`;
+                        toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 08:00`;
                     } else if (currentHour === 16) {
-                        toastMessageElement.innerText = `Olá ${usuario}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 17:00`;
+                        toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 17:00`;
                     }
 
                     console.log('Exibindo o toast');

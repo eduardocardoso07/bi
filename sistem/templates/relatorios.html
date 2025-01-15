@@ -364,10 +364,12 @@
             const options = { timeZone: 'America/Campo_Grande' };
             const localTime = new Date(now.toLocaleString('en-US', options));
             const hour = localTime.getHours();
+            const minutes = localTime.getMinutes();
             const alertContainer = document.getElementById('dynamic-alert');
             let alertHTML = '';
 
-            if (hour === 15) {
+            // Verifica se está entre 15:00 e 15:29
+            if (hour === 15 && minutes >= 0 && minutes <= 29) {
                 alertHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                     <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -382,7 +384,9 @@
                         Relatórios em atualização, por gentileza feche a página, previsão de término 13:30hrs
                     </div>
                 </div>`;
-            } else if (hour === 7) {
+            } 
+            // Verifica se está entre 07:00 e 07:29
+            else if (hour === 7 && minutes >= 0 && minutes <= 29) {
                 alertHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                     <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -403,6 +407,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', showAlertBasedOnTime);
+
     </script>
 </head>
 <body>

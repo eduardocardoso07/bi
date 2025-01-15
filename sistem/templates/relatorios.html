@@ -456,13 +456,13 @@
             // Verificar se o horário está no intervalo
             if (
                 (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-                (currentHour === 16 && currentMinutes >= 0 && currentMinutes <= 29)
+                (currentHour === 15 && currentMinutes >= 0 && currentMinutes <= 29)
             ) {
                 // Definir a mensagem com base no horário
                 if (currentHour === 7) {
-                    toastMessageElement.innerText = `Olá ${usuario}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 08:00.`;
-                } else if (currentHour === 16) {
-                    toastMessageElement.innerText = `Olá ${usuario}, Estamos em atualização, por gentileza feche o sistema e abra novamente as 15:30.`;
+                    toastMessageElement.innerText = "Por favor, feche o sistema e abra novamente após as 08:00.";
+                } else if (currentHour === 15) {
+                    toastMessageElement.innerText = "Por favor, feche o sistema e abra novamente após as 15:30.";
                 }
 
                 // Exibir o toast

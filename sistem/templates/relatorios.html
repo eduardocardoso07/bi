@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Relatórios</title>
-    <title>Relatórios</title>
     <style>
         body {
             background-color: var(--body-bg-color);
@@ -20,6 +19,7 @@
             min-height: 100vh;
         }
 
+        /* Estilo do quadrado flutuante */
         .floating-square {
             position: fixed;
             bottom: 10px;
@@ -27,7 +27,7 @@
             width: 2.3cm;
             height: 3cm;
             background-color: transparent;
-            border: none;
+            border: 1px solid rgba(252, 0, 0, 0);
             z-index: 9999;
             transition: height 0.2s ease-out;
         }
@@ -93,6 +93,46 @@
             flex-wrap: wrap;
         }
 
+        .navbar .navbar-left {
+            flex: 1;
+        }
+
+        .navbar .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .navbar-right-item {
+            margin-left: 20px;
+        }
+
+        .navbar span,
+        .navbar a {
+            color: var(--navbar-text);
+            text-decoration: none;
+        }
+
+        .navbar a {
+            margin-left: 20px;
+        }
+
+        .navbar a:focus {
+            text-decoration: underline;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Anel de foco */
+        }
+
+        .navbar .navbar-brand {
+            color: var(--navbar-text);
+        }
+
+        .navbar .report-status {
+            color: var(--navbar-text);
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+
+        /* Sidebar Styles */
         .sidebar {
             background-color: var(--sidebar-bg);
             width: 250px;
@@ -112,8 +152,10 @@
             margin-bottom: 20px;
             border-bottom: 2px solid var(--button-bg-selected);
             padding-bottom: 10px;
+            transition: color var(--transition-speed);
         }
 
+        /* Sidebar Links */
         .sidebar a {
             color: var(--sidebar-text);
             text-decoration: none;
@@ -121,18 +163,19 @@
             align-items: center;
             margin-bottom: 10px;
             padding: 0.25rem 0.5rem;
-            border: none;
+            border: 1px solid;
             border-radius: 2px;
             background: none;
         }
 
         .sidebar a:focus {
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5);
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Mantendo o anel de foco */
             outline: none;
         }
 
         .sidebar a.selected {
             font-weight: bold;
+            border-color: var(--button-bg-hover);
         }
 
         .content {
@@ -141,6 +184,16 @@
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
             color: var(--body-text-color);
+        }
+
+        .content iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+
+        .logout-form {
+            display: none;
         }
 
         .footer {
@@ -155,7 +208,47 @@
             width: 100%;
             margin-top: auto;
         }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                padding: 10px;
+                position: relative;
+                box-shadow: none;
+            }
+
+            .navbar {
+                font-size: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .report-status {
+                margin: 10px 0 0 0;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .footer {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar span,
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .content iframe {
+                height: 60vh;
+            }
+        }
     </style>
+
      <script>
         // Configurações de sessão e tema
         const sessionExpiryTime = 14400000;
@@ -240,16 +333,13 @@
         </div>
     </nav>
 
-        <div class="d-flex flex-column flex-md-row">
-            <div class="sidebar">
-                <h5>Relatórios Disponíveis</h5>
-                <div>
-                    {% for relatorio in relatorios %}
-                    <a href="?relatorio={{ relatorio.nome }}" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none {% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">
-                        {{ relatorio.nome }}
-                    </a>
-                    {% endfor %}
-                </div>
+    <div class="d-flex flex-column flex-md-row">
+        <div class="sidebar">
+            <h5>Relatórios Disponíveis</h5>
+            <div>
+                {% for relatorio in relatorios %}
+                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">{{ relatorio.nome }}</a>
+                {% endfor %}
             </div>
         </div>
 

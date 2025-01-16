@@ -324,9 +324,9 @@
             const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR');
             let reportMessage = '';
 
-            if (currentHour < 11) {
-                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 13:30, previsão de término 12:00.`;
-            } else if (currentHour >= 11 && currentHour < 23) {
+            if (currentHour < 13) {
+                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 13:30.`;
+            } else if (currentHour >= 13 && currentHour < 23) {
                 reportMessage = `Relatórios atualizados ${today} às 13:30. Próxima atualização amanhã às 08:00.`;
             }
 

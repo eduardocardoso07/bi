@@ -432,13 +432,8 @@
                     <small class="text-body-secondary">Agora</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
                 </div>
-                <div class="toast-body d-flex align-items-center">
-                    <div id="toast-spinner" class="spinner-border text-danger me-2" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <span id="toast-message">
-                        <!-- A mensagem será definida dinamicamente pelo script -->
-                    </span>
+                <div class="toast-body" id="toast-message">
+                    <!-- A mensagem será definida dinamicamente pelo script -->
                 </div>
             </div>
         </div>
@@ -449,7 +444,6 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const toastElement = document.querySelector('#notification-toast');
                 const toastMessageElement = document.querySelector('#toast-message');
-                const toastSpinnerElement = document.querySelector('#toast-spinner');
 
                 // Obter o horário atual em Campo Grande-MS (UTC-4)
                 const campoGrandeTime = new Date().toLocaleString('en-US', {
@@ -466,7 +460,7 @@
                 // Verificar se o horário está no intervalo
                 if (
                     (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-                    (currentHour === 14 && currentMinutes >= 0 && currentMinutes <= 44)
+                    (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 44)
                 ) {
                     // Definir a mensagem com base no horário
                     if (currentHour === 7) {
@@ -477,20 +471,13 @@
 
                     console.log('Exibindo o toast');
 
-                    // Exibir o toast com o spinner
-                    toastSpinnerElement.style.display = 'block'; // Mostrar o spinner
+                    // Exibir o toast
                     const toast = new bootstrap.Toast(toastElement);
                     toast.show();
-
-                    // Opcional: Esconder o spinner após o toast ser fechado
-                    toastElement.addEventListener('hidden.bs.toast', () => {
-                        toastSpinnerElement.style.display = 'none'; // Ocultar o spinner
-                    });
                 } else {
                     console.log('Horário fora do intervalo');
                 }
             });
-
         </script>
 
         <style>

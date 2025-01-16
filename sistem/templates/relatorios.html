@@ -288,6 +288,12 @@
             pointer-events: none;
         }
 
+        .focus-ring:focus {
+            outline: 3px solid #7d080a; /* Cor do anel de foco */
+            outline-offset: 2px;
+            background-color: transparent;
+        }
+
         
     </style>
      <script>
@@ -374,15 +380,18 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column flex-md-row">
         <div class="sidebar">
             <h5>Relatórios Disponíveis</h5>
             <div>
                 {% for relatorio in relatorios %}
-                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">{{ relatorio.nome }}</a>
+                <a href="?relatorio={{ relatorio.nome }}" 
+                class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2 {% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">
+                {{ relatorio.nome }}
+                </a>
                 {% endfor %}
             </div>
         </div>
+    
 
         <main class="content">
             {% if relatorio_selecionado %}

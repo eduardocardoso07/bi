@@ -135,6 +135,7 @@
             white-space: nowrap;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             background-color: var(--sidebar-bg);
             width: 250px;
@@ -157,6 +158,7 @@
             transition: color var(--transition-speed);
         }
 
+        /* Sidebar Links */
         .sidebar a {
             color: var(--sidebar-text);
             text-decoration: none;
@@ -170,21 +172,47 @@
             transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
+        /* Focus Ring */
         .sidebar a:focus {
             border-color: var(--button-bg-hover); /* Anel de foco */
             box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Personalizando o anel de foco */
             outline: none;
         }
 
+        /* Theme-based Border Colors */
+        body.light-theme .sidebar a {
+            border-color: #444444; /* Contorno para tema claro */
+        }
+
+        body.dark-theme .sidebar a {
+            border-color: #f1f1f1; /* Contorno para tema escuro */
+        }
+
+        /* Hover Styles */
         .sidebar a:hover {
             background: none; /* Removendo o hover */
             color: var(--sidebar-text); /* Mantendo a cor do texto */
         }
 
+        /* Selected State */
         .sidebar a.selected {
             border-color: var(--button-bg-hover); /* Realçando o estado selecionado */
             box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Reforçando o foco no selecionado */
             font-weight: 500; /* Tornar o texto mais visível */
+        }
+
+        /* Retaining Focus */
+        .sidebar a:focus {
+            border-color: var(--button-bg-hover); /* Mantém o foco ao clicar */
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5);
+        }
+
+        .sidebar a:focus:not(:focus-visible) {
+            box-shadow: none; /* Remove o anel de foco apenas quando não visível */
+        }
+
+        .sidebar a:not(:focus):not(.selected) {
+            border-color: transparent; /* Remove o contorno de outros itens não focados ou selecionados */
         }
 
         .content {

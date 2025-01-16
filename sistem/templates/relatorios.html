@@ -172,47 +172,36 @@
             transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
-        /* Focus Ring */
         .sidebar a:focus {
             border-color: var(--button-bg-hover); /* Anel de foco */
             box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Personalizando o anel de foco */
             outline: none;
         }
 
-        /* Theme-based Border Colors */
-        body.light-theme .sidebar a {
-            border-color: #444444; /* Contorno para tema claro */
+        /* Standard Link Formatting */
+        .sidebar a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem; /* Espaçamento conforme especificação */
+            border: 1px solid; /* Borda genérica */
+            border-radius: 2px;
+            background: none;
+            transition: box-shadow 0.2s, border-color 0.2s;
         }
 
-        body.dark-theme .sidebar a {
-            border-color: #f1f1f1; /* Contorno para tema escuro */
-        }
-
-        /* Hover Styles */
-        .sidebar a:hover {
-            background: none; /* Removendo o hover */
-            color: var(--sidebar-text); /* Mantendo a cor do texto */
-        }
-
-        /* Selected State */
-        .sidebar a.selected {
-            border-color: var(--button-bg-hover); /* Realçando o estado selecionado */
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Reforçando o foco no selecionado */
-            font-weight: 500; /* Tornar o texto mais visível */
-        }
-
-        /* Retaining Focus */
         .sidebar a:focus {
-            border-color: var(--button-bg-hover); /* Mantém o foco ao clicar */
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5);
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Mantendo o anel de foco */
+            outline: none;
         }
 
-        .sidebar a:focus:not(:focus-visible) {
-            box-shadow: none; /* Remove o anel de foco apenas quando não visível */
+        .sidebar a.selected {
+            font-weight: bold; /* Destacando apenas o nome do relatório */
+            border-color: var(--button-bg-hover);
         }
 
-        .sidebar a:not(:focus):not(.selected) {
-            border-color: transparent; /* Remove o contorno de outros itens não focados ou selecionados */
+        .sidebar a:hover {
+            color: var(--sidebar-text);
         }
 
         .content {

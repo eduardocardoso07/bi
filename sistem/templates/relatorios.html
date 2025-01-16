@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Estilo do quadrado flutuante */
         .floating-square {
             position: fixed;
             bottom: 10px;
@@ -112,27 +111,6 @@
             text-decoration: none;
         }
 
-        .navbar a {
-            margin-left: 20px;
-        }
-
-        .navbar a:focus {
-            text-decoration: underline;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Anel de foco */
-        }
-
-        .navbar .navbar-brand {
-            color: var(--navbar-text);
-        }
-
-        .navbar .report-status {
-            color: var(--navbar-text);
-            margin-right: 20px;
-            white-space: nowrap;
-        }
-
-        /* Sidebar Styles */
         .sidebar {
             background-color: var(--sidebar-bg);
             width: 250px;
@@ -152,10 +130,8 @@
             margin-bottom: 20px;
             border-bottom: 2px solid var(--button-bg-selected);
             padding-bottom: 10px;
-            transition: color var(--transition-speed);
         }
 
-        /* Sidebar Links */
         .sidebar a {
             color: var(--sidebar-text);
             text-decoration: none;
@@ -163,19 +139,18 @@
             align-items: center;
             margin-bottom: 10px;
             padding: 0.25rem 0.5rem;
-            border: 1px solid;
             border-radius: 2px;
             background: none;
         }
 
         .sidebar a:focus {
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Mantendo o anel de foco */
             outline: none;
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5);
         }
 
         .sidebar a.selected {
             font-weight: bold;
-            border-color: var(--button-bg-hover);
+            border: none;
         }
 
         .content {
@@ -190,10 +165,6 @@
             width: 100%;
             height: 80vh;
             border: none;
-        }
-
-        .logout-form {
-            display: none;
         }
 
         .footer {
@@ -223,10 +194,6 @@
                 align-items: flex-start;
             }
 
-            .navbar .report-status {
-                margin: 10px 0 0 0;
-            }
-
             .content {
                 padding: 10px;
             }
@@ -237,12 +204,6 @@
         }
 
         @media (max-width: 576px) {
-            .navbar span,
-            .navbar a {
-                display: block;
-                margin: 5px 0;
-            }
-
             .content iframe {
                 height: 60vh;
             }

@@ -200,8 +200,7 @@
         background-color: var(--button-bg-hover); /* Usando a mesma cor do hover */
         color: #ffffff; /* Cor do texto no estado selecionado */
         font-weight: 500; /* Tornar o texto mais visível */
-}
-
+        }
 
         .content {
             flex-grow: 1; /* Garante que o conteúdo ocupe o espaço disponível */
@@ -288,6 +287,13 @@
             background: transparent;
             pointer-events: none;
         }
+
+        /* Estilos adicionais para foco */
+        .focus-ring:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
     </style>
      <script>
         // Configurações de sessão e tema
@@ -365,11 +371,13 @@
             <span>Bem-vindo(a), {{ usuario }}.</span>
         </div>
         <div class="navbar-right">
-            <div class="report-status" id="report-status"></div>
-            <a href="#" id="theme-toggle" class="navbar-right-item" onclick="toggleTheme()">
-                <i id="theme-icon" class="bi bi-brightness-high"></i> Alternar tema
+            <a href="#" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2">
+                Alternar tema
             </a>
-            <a href="#" id="logout" class="navbar-right-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Encerrar sessão</a>
+            <a href="#" id="logout" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Encerrar sessão
+            </a>
         </div>
     </nav>
 
@@ -378,7 +386,10 @@
             <h5>Relatórios Disponíveis</h5>
             <div>
                 {% for relatorio in relatorios %}
-                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">{{ relatorio.nome }}</a>
+                <a href="?relatorio={{ relatorio.nome }}" 
+                   class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2 {% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">
+                    {{ relatorio.nome }}
+                </a>
                 {% endfor %}
             </div>
         </div>
@@ -387,11 +398,17 @@
             {% if relatorio_selecionado %}
                 {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
-                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o relatório</a>.
+                        <a href="{{ relatorio_selecionado }}" target="_blank" 
+                           class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2">
+                           Clique aqui para abrir o relatório
+                        </a>.
                     </p>
                 {% elif "linktr.ee" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
-                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o Linktree</a>.
+                        <a href="{{ relatorio_selecionado }}" target="_blank" 
+                           class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2">
+                           Clique aqui para abrir o Linktree
+                        </a>.
                     </p>
                 {% else %}
                     <iframe id="relatorio-iframe" src="{{ relatorio_selecionado }}" frameborder="0" style="background-color: #ffffff;"></iframe>

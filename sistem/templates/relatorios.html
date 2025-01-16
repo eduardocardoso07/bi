@@ -55,7 +55,6 @@
             --footer-text-light: #000000;
             --footer-text-dark: #f8f9fafa;
             --sidebar-font-size: 12px;
-
         }
 
         [data-theme="light"] {
@@ -117,8 +116,10 @@
             margin-left: 20px;
         }
 
-        .navbar a:hover {
+        .navbar a:focus {
             text-decoration: underline;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Anel de foco */
         }
 
         .navbar .navbar-brand {
@@ -161,11 +162,10 @@
             display: inline-flex;
             align-items: center;
             margin-bottom: 10px;
-            padding: 0.25rem 0.5rem; /* Espaçamento conforme especificação */
-            border: 1px solid; /* Borda genérica */
+            padding: 0.25rem 0.5rem;
+            border: 1px solid;
             border-radius: 2px;
             background: none;
-            transition: box-shadow 0.2s, border-color 0.2s;
         }
 
         .sidebar a:focus {
@@ -174,16 +174,12 @@
         }
 
         .sidebar a.selected {
-            font-weight: bold; /* Destacando apenas o nome do relatório */
+            font-weight: bold;
             border-color: var(--button-bg-hover);
         }
 
-        .sidebar a:hover {
-            color: var(--sidebar-text);
-        }
-
         .content {
-            flex-grow: 1; /* Garante que o conteúdo ocupe o espaço disponível */
+            flex-grow: 1;
             padding: 20px;
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
@@ -208,9 +204,9 @@
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 14px;
             font-weight: 100;
-            position: relative; /* Ajustado para layout com flexbox */
+            position: relative;
             width: 100%;
-            margin-top: auto; /* Empurra o footer para o final */
+            margin-top: auto;
         }
 
         @media (max-width: 768px) {
@@ -251,24 +247,6 @@
                 height: 60vh;
             }
         }
-
-        /* Adicione o CSS para tentar ocultar os botões de compartilhamento */
-        .content iframe {
-            position: relative;
-        }
-        
-        .content iframe:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            pointer-events: none;
-        }
-
-        
     </style>
 
      <script>

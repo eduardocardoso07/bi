@@ -146,15 +146,12 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             font-size: var(--sidebar-font-size);
-
         }
-
 
         .sidebar h5 {
             font-size: calc(var(--sidebar-font-size) + 2px);
             color: var(--sidebar-text);
             margin-bottom: 20px;
-            border-bottom: 2px solid #7d080a;
             border-bottom: 2px solid var(--button-bg-selected);
             padding-bottom: 10px;
             transition: color var(--transition-speed);
@@ -163,22 +160,31 @@
         .sidebar a {
             color: var(--sidebar-text);
             text-decoration: none;
-            display: block;
+            display: inline-flex;
+            align-items: center;
             margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: var(--button-bg-color);
+            padding: 0; /* Removendo o preenchimento */
+            border-radius: 2px; /* Ajustando a borda */
+            border: 1px solid transparent;
+            background: none; /* Removendo o fundo */
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .sidebar a:focus {
+            border-color: var(--button-bg-hover); /* Anel de foco */
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Personalizando o anel de foco */
+            outline: none;
         }
 
         .sidebar a:hover {
-            background-color: var(--button-bg-hover);
-            color: #ffffff;
+            background: none; /* Removendo o hover */
+            color: var(--sidebar-text); /* Mantendo a cor do texto */
         }
 
         .sidebar a.selected {
-        background-color: var(--button-bg-hover); /* Usando a mesma cor do hover */
-        color: #ffffff; /* Cor do texto no estado selecionado */
-        font-weight: 500; /* Tornar o texto mais visível */
+            border-color: var(--button-bg-hover); /* Realçando o estado selecionado */
+            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Reforçando o foco no selecionado */
+            font-weight: 500; /* Tornar o texto mais visível */
         }
 
         .content {

@@ -12,7 +12,7 @@
             background-color: var(--body-bg-color);
             background-image: var(--body-bg-gradient, none);
             color: var(--body-text-color);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -37,7 +37,6 @@
             --background-color-dark: #444444;
             --text-color-light: #000000;
             --text-color-dark: #f8f9fa;
-            --hover-color: #7d080a;
             --navbar-bg-light: #f1f1f1;
             --navbar-bg-dark: #444444;
             --navbar-text-light: #000000;
@@ -56,10 +55,6 @@
             --footer-text-light: #000000;
             --footer-text-dark: #f8f9fafa;
 
-            --sidebar-font-size: 12px;
-            --button-bg-color: #7b7878;
-            --button-bg-hover: #7d080a;
-            --button-bg-selected: #7d080a;
         }
 
         [data-theme="light"] {
@@ -89,7 +84,7 @@
             background-color: var(--navbar-bg);
             color: var(--navbar-text);
             padding: 10px;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             font-size: 13px;
             font-weight: 100;
             display: flex;
@@ -165,24 +160,6 @@
             display: inline-flex;
             align-items: center;
             margin-bottom: 10px;
-            padding: 0; /* Removendo o preenchimento */
-            border-radius: 2px; /* Ajustando a borda */
-            border: 1px solid transparent;
-            background: none; /* Removendo o fundo */
-            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        .sidebar a:focus {
-            border-color: var(--button-bg-hover); /* Anel de foco */
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Personalizando o anel de foco */
-            outline: none;
-        }
-
-        /* Standard Link Formatting */
-        .sidebar a {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
             padding: 0.25rem 0.5rem; /* Espaçamento conforme especificação */
             border: 1px solid; /* Borda genérica */
             border-radius: 2px;
@@ -227,7 +204,7 @@
             color: var(--footer-text);
             padding: 10px;
             text-align: center;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             font-size: 14px;
             font-weight: 100;
             position: relative; /* Ajustado para layout com flexbox */
@@ -292,6 +269,7 @@
 
         
     </style>
+
      <script>
         // Configurações de sessão e tema
         const sessionExpiryTime = 14400000;

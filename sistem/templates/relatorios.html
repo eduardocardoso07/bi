@@ -168,6 +168,11 @@
             outline: none;
         }
 
+        .navbar a:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+
         .content {
             flex-grow: 1;
             padding: 20px;
@@ -237,137 +242,3 @@
                 height: 60vh;
             }
         }
-    </style>
-    <style>
-        .focus-ring:focus {
-            box-shadow: 0 0 0 3px rgba(125, 8, 10, 0.5); /* Anel de foco */
-            outline: none;
-        }
-    </style>
-
-     <script>
-        // Configurações de sessão e tema
-        const sessionExpiryTime = 14400000;
-        setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
-
-        function resetTimer() {
-            clearTimeout(timer);
-            timer = setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
-        }
-
-        let timer = setTimeout(() => { window.location.href = "{% url 'login' %}"; }, sessionExpiryTime);
-
-        window.onload = resetTimer;
-        window.onmousemove = resetTimer;
-        window.onmousedown = resetTimer;
-        window.ontouchstart = resetTimer;
-        window.onclick = resetTimer;
-        window.onkeypress = resetTimer;
-
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            const themeIcon = document.getElementById('theme-icon');
-            themeIcon.className = newTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
-        }
-
-        function updateReportStatus() {
-            const now = new Date();
-            const currentHour = now.getHours();
-            const today = now.toLocaleDateString('pt-BR');
-            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR');
-            let reportMessage = '';
-
-            if (currentHour < 13) {
-                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 13:30.`;
-            } else if (currentHour >= 13 && currentHour < 23) {
-                reportMessage = `Relatórios atualizados ${today} às 13:30. Próxima atualização amanhã às 08:00.`;
-            }
-
-            document.getElementById('report-status').innerText = reportMessage;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const storedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', storedTheme);
-            const themeIcon = document.getElementById('theme-icon');
-            themeIcon.className = storedTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
-
-            const sidebarLinks = document.querySelectorAll('.sidebar a');
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    sidebarLinks.forEach(link => link.classList.remove('selected', 'focus-ring'));
-                    this.classList.add('selected', 'focus-ring');
-                });
-            });
-
-            updateReportStatus();
-        });
-    </script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="navbar-left">
-            <span>Bem-vindo(a), {{ usuario }}.</span>
-        </div>
-        <div class="navbar-right">
-            <div class="report-status" id="report-status"></div>
-            <a href="#" id="theme-toggle" class="navbar-right-item" onclick="toggleTheme()">
-                <i id="theme-icon" class="bi bi-brightness-high"></i> Alternar tema
-            </a>
-            <a href="#" id="logout" class="navbar-right-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Encerrar sessão</a>
-        </div>
-    </nav>
-
-    <div class="d-flex flex-column flex-md-row">
-        <div class="sidebar">
-            <h5>Relatórios Disponíveis</h5>
-            <div>
-                {% for relatorio in relatorios %}
-                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected focus-ring{% endif %}">{{ relatorio.nome }}</a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <main class="content">
-            {% if relatorio_selecionado %}
-                {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado %}
-                    <p>O relatório selecionado é um link externo. 
-                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o relatório</a>.
-                    </p>
-                {% elif "linktr.ee" in relatorio_selecionado %}
-                    <p>O relatório selecionado é um link externo. 
-                        <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir o Linktree</a>.
-                    </p>
-                {% else %}
-                    <iframe id="relatorio-iframe" src="{{ relatorio_selecionado }}" frameborder="0" style="background-color: #ffffff;"></iframe>
-                {% endif %}
-            {% else %}
-                <p>Selecione um relatório à esquerda para visualizá-lo.</p>
-            {% endif %}
-        </main>
-    </div>
-
-    <form id="logout-form" action="{% url 'logout' %}" method="POST" class="logout-form">
-        {% csrf_token %}
-    </form>
-
-    <footer class="footer" style="font-size: 10px;">
-        <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
-
-        <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
-        </a>
-
-        <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
-        </a>
-        
-        <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Eduardo Cardoso | Assistente de Business Intelligence
-        </a>
-    </footer>
-</body>
-</html>

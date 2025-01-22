@@ -16,11 +16,11 @@ relatorios_urls = {
     'OneDrive - Business Intelligence': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ein-hXyOGLFCh-FVwHmmHucBVpWVBOoGh5nSMg4w_g2j7w?e=BnvepW',
     'OneDrive - Diretor e Gerente Geral': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ein-hXyOGLFCh-FVwHmmHucBVpWVBOoGh5nSMg4w_g2j7w?e=VBBIZH',
     'Base de conhecimento Tecnologia da Informação':'https://linktr.ee/ti.colub',
-    'Sales Development Representative':'https://app.powerbi.com/view?r=eyJrIjoiNjI4MDdiNzgtMGQyNC00OTgwLTliZGUtM2RkZDA5MzczN2JkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    #'Sales Development Representative':'https://app.powerbi.com/view?r=eyJrIjoiNjI4MDdiNzgtMGQyNC00OTgwLTliZGUtM2RkZDA5MzczN2JkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento de Vendas':'https://app.powerbi.com/view?r=eyJrIjoiOWI0MTU2ZmEtYTYwZi00YzJiLThhYzQtOWY1NjdjODNiNThmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Produtividade Diária':'https://app.powerbi.com/view?r=eyJrIjoiOTE2YzVlZGUtNDg4NC00ZmIxLWExZTYtMGZiNWJlNjMyZDBmIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Análise de Preço':'https://app.powerbi.com/view?r=eyJrIjoiM2JjOTI4MGMtNDY5Yi00YmUwLWI2MzYtNWVmZjVkZjkyOGJlIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
-    'Dados Novos':'https://app.powerbi.com/view?r=eyJrIjoiN2IyOGUxNzUtZWYyMy00YjA2LWFlZGEtZDc4ZGVjOTliZjEyIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    #'Dados Novos':'https://app.powerbi.com/view?r=eyJrIjoiN2IyOGUxNzUtZWYyMy00YjA2LWFlZGEtZDc4ZGVjOTliZjEyIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
 
     'Acompanhamento Gerentes - Revenda': 'https://app.powerbi.com/view?r=eyJrIjoiMjkwYTU3ZDktZjI0MC00Yjg1LWFlZGUtODI1ODAwNTVkNGFiIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Gerentes - Consumo': 'https://app.powerbi.com/view?r=eyJrIjoiM2IxY2UyOTktMzcxMy00NzZhLWEwNmQtNzlkMGYwZjA4NDU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

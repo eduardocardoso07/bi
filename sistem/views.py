@@ -187,6 +187,7 @@ relatorios_urls = {
     'R20015 - REV - MT': 'https://app.powerbi.com/view?r=eyJrIjoiNTNmZTM1M2ItNjliZS00ZWNlLTg1OWQtZDQzMWU2M2RmNjAwIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - R20015': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/EvCgjCAlsWpLgPbtVRorJsUB9uutEbrbJo3FkhdqHZIFSw?e=iqKu1o',  
     
+    'Logistica':'https://app.powerbi.com/view?r=eyJrIjoiZmE2YWQ3NTItMmE1NS00MmY4LTk0ZjAtY2RlNjhiZTVlMGVkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=ReportSectione8639981062376e059d9'
 }
 
 def verificar_credenciais(usuario, senha):

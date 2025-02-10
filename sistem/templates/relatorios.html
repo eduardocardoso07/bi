@@ -42,10 +42,6 @@
             --navbar-bg-dark: #444444;
             --navbar-text-light: #000000;
             --navbar-text-dark: #f8f9fafa;
-            --sidebar-bg-light: #f1f1f1;
-            --sidebar-bg-dark: transparent;
-            --sidebar-text-light: #000000;
-            --sidebar-text-dark: #ffffff;
             --body-bg-light: #f8f9fa;
             --body-bg-dark: #010f76;
             --body-bg-gradient-dark: linear-gradient(to bottom, #444444 , #444444 );
@@ -56,10 +52,6 @@
             --footer-text-light: #000000;
             --footer-text-dark: #f8f9fafa;
 
-            --sidebar-font-size: 12px;
-            --button-bg-color: #adacac;
-            --button-bg-hover: #7d080a;
-            --button-bg-selected: #7d080a;
         }
 
         [data-theme="light"] {
@@ -67,8 +59,6 @@
             --body-text-color: var(--body-text-light);
             --navbar-bg: var(--navbar-bg-light);
             --navbar-text: var(--navbar-text-light);
-            --sidebar-bg: var(--sidebar-bg-light);
-            --sidebar-text: var(--sidebar-text-light);
             --footer-bg: var(--footer-bg-light);
             --footer-text: var(--footer-text-light);
         }
@@ -79,8 +69,6 @@
             --body-text-color: var(--body-text-dark);
             --navbar-bg: var(--navbar-bg-dark);
             --navbar-text: var(--navbar-text-dark);
-            --sidebar-bg: var(--sidebar-bg-dark);
-            --sidebar-text: var(--sidebar-text-dark);
             --footer-bg: var(--footer-bg-dark);
             --footer-text: var(--footer-text-dark);
         }
@@ -134,52 +122,6 @@
             margin-right: 20px;
             white-space: nowrap;
         }
-
-        .sidebar {
-            background-color: var(--sidebar-bg);
-            width: 250px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            color: var(--sidebar-text);
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            font-size: var(--sidebar-font-size);
-
-        }
-
-        .sidebar h5 {
-            font-size: calc(var(--sidebar-font-size) + 2px);
-            color: var(--sidebar-text);
-            margin-bottom: 20px;
-            border-bottom: 2px solid #7d080a;
-            border-bottom: 2px solid var(--button-bg-selected);
-            padding-bottom: 10px;
-            transition: color var(--transition-speed);
-        }
-
-        .sidebar a {
-            color: var(--sidebar-text);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: var(--button-bg-color);
-        }
-
-        .sidebar a:hover {
-            background-color: var(--button-bg-hover);
-            color: #ffffff;
-        }
-
-        .sidebar a.selected {
-        background-color: var(--button-bg-hover); /* Usando a mesma cor do hover */
-        color: #ffffff; /* Cor do texto no estado selecionado */
-        font-weight: 500; /* Tornar o texto mais visível */
-}
-
 
         .content {
             flex-grow: 1; /* Garante que o conteúdo ocupe o espaço disponível */
@@ -295,22 +237,6 @@
             themeIcon.className = newTheme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-brightness-high';
         }
 
-        function updateReportStatus() {
-            const now = new Date();
-            const currentHour = now.getHours();
-            const today = now.toLocaleDateString('pt-BR');
-            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR');
-            let reportMessage = '';
-
-            if (currentHour < 13) {
-                reportMessage = `Relatórios atualizados ${today} às 08:00. Próxima atualização às 13:30.`;
-            } else if (currentHour >= 13 && currentHour < 23) {
-                reportMessage = `Relatórios atualizados ${today} às 13:30. Próxima atualização amanhã às 08:00.`;
-            }
-
-            document.getElementById('report-status').innerText = reportMessage;
-        }
-
         function adjustFloatingSquare() {
             const scrollPosition = window.scrollY;
             const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -351,15 +277,20 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column flex-md-row">
-        <div class="sidebar">
-            <h5>Relatórios Disponíveis</h5>
-            <div>
-                {% for relatorio in relatorios %}
-                <a href="?relatorio={{ relatorio.nome }}" class="{% if relatorio.nome == relatorio_selecionado %}selected{% endif %}">{{ relatorio.nome }}</a>
-                {% endfor %}
-            </div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            {% for relatorio in relatorios %}
+                <a class="nav-link {% if relatorio.nome == relatorio_selecionado %}active{% endif %}" 
+                   id="nav-{{ relatorio.nome }}-tab" 
+                   href="?relatorio={{ relatorio.nome }}" 
+                   role="tab" 
+                   aria-controls="nav-{{ relatorio.nome }}" 
+                   aria-selected="{% if relatorio.nome == relatorio_selecionado %}true{% else %}false{% endif %}">
+                    {{ relatorio.nome }}
+                </a>
+            {% endfor %}
         </div>
+    </nav>
 
         <main class="content">
             {% if relatorio_selecionado %}
@@ -385,18 +316,18 @@
     </form>
 
     <footer class="footer" style="font-size: 10px;">
-        <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
+        <p>&copy; 2025 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
 
         <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence  
+            <i class="bi bi-whatsapp"></i> Sabrina Manzoli
         </a>
 
         <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
+            <i class="bi bi-whatsapp"></i> Vander Denardi
         </a>
         
         <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
-            <i class="bi bi-whatsapp"></i> Eduardo Cardoso | Assistente de Business Intelligence
+            <i class="bi bi-whatsapp"></i> Eduardo Cardoso
         </a>
     </footer>
 
@@ -442,7 +373,7 @@
                 ) {
                     // Definir a mensagem com base no horário
                     if (currentHour === 7) {
-                        toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
+                        toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas \n\n  Realizando alterações de histórico de metas por causa das alterações de regiões. \n\n Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
                     } else if (currentHour === 13) {
                         toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 14:15 horas \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
                     }

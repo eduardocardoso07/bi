@@ -20,12 +20,12 @@ class Usuario(models.Model):
         return self.usuario
 
 class Relatorio(models.Model):
-    id = models.AutoField(primary_key=True)
-    relatorio = models.CharField(max_length=100)
-    link = models.TextField()  # Usa TextField para armazenar o HTML do iframe
-    
+    nome = models.CharField(max_length=255, default="Sem Nome")  # Campo correto
+    link = models.URLField()
+    acesso_externo = models.BooleanField(default=False)
+
     def __str__(self):
-        return self.relatorio
+        return self.nome
 
 class Acesso(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='acessos')

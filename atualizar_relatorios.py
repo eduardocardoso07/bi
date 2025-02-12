@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.utils import timezone
-from .models import Usuario, Acesso
-import logging
+import os
+import django
 
-logger = logging.getLogger(__name__)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+django.setup()
+
+from sistem.models import Relatorio
+
 
 relatorios_urls = [
     {
@@ -824,66 +825,11 @@ relatorios_urls = [
     }
 ]
 
-# Criar um dicionário a partir da lista para fácil acesso
-relatorios_urls_dict = {r['nome']: r['link'] for r in relatorios_urls}
-
-def verificar_credenciais(usuario, senha):
-    try:
-        user = Usuario.objects.get(usuario=usuario, senha=senha)
-        if user.acesso:
-            relatorios_list = list(user.relatorios.all().values_list('nome', flat=True))
-            return relatorios_list, True
-    except Usuario.DoesNotExist:
-        return [], False
-
-def login_view(request):
-    if request.method == 'POST':
-        usuario = request.POST['usuario']
-        senha = request.POST['senha']
-
-        relatorios, acesso_liberado = verificar_credenciais(usuario, senha)
-        if acesso_liberado:
-            request.session['usuario'] = usuario
-            request.session['relatorios'] = relatorios
-            request.session.set_expiry(14400)  # Expira a sessão em 4 horas
-
-            usuario_obj = Usuario.objects.get(usuario=usuario)
-            usuario_obj.last_login = timezone.now()
-            usuario_obj.save()
-
-            Acesso.objects.create(
-                usuario=usuario_obj,
-                ip_address=request.META.get('REMOTE_ADDR')
-            )
-
-            logger.info(f'Usuário {usuario} realizou login em {timezone.now()}')
-
-            return redirect('relatorios')
-        else:
-            return render(request, 'login.html', {'erro': 'Usuário ou senha incorretos'})
-
-    return render(request, 'login.html')
-
-def relatorios_view(request):
-    if not request.session.get('usuario'):  # Verifica se a sessão ainda é válida
-        return redirect('login')
-
-    usuario = request.session['usuario']
-    relatorios = request.session.get('relatorios', [])
-    
-    # Criar lista de relatórios disponíveis com URLs corretas
-    relatorios_disponiveis = [{'nome': r, 'url': relatorios_urls_dict.get(r, '#')} for r in relatorios]
-
-    # Obter o relatório selecionado
-    relatorio_nome = request.GET.get('relatorio')
-    relatorio_selecionado = relatorios_urls_dict.get(relatorio_nome) if relatorio_nome in relatorios else None
-
-    return render(request, 'relatorios.html', {
-        'relatorios': relatorios_disponiveis,
-        'relatorio_selecionado': relatorio_selecionado,
-        'usuario': usuario,  # Adiciona o nome do usuário ao contexto
-    })
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')
+for relatorio in relatorios_urls:
+    Relatorio.objects.get_or_create(
+        nome=relatorio['nome'],
+        defaults={
+            'link': relatorio['link'],
+            'acesso_externo': relatorio.get('acesso_externo', False)  # Evita KeyError
+        }
+    )

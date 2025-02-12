@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 relatorios_urls = [
     {
     'nome':	'Acompanhamento Gerentes',

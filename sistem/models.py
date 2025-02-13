@@ -22,8 +22,9 @@ class Usuario(models.Model):
 
 
 class Relatorio(models.Model):
-    nome = models.CharField(max_length=255)  # O tamanho deve corresponder ao banco de dados (255)
-    link = models.CharField(max_length=2000)
+    id = models.AutoField(primary_key=True)
+    relatorios = models.CharField(max_length=100)  # O tamanho deve corresponder ao banco de dados (255)
+    link = models.TextField()
     acesso_externo = models.BooleanField(default=False)
 
     def __str__(self):

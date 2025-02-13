@@ -17,11 +17,11 @@ class CoordenadorFilter(admin.SimpleListFilter):
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'acesso', 'last_login', 'coordenador')
-    fields = ('usuario', 'senha', 'acesso', 'nome', 'onedrive_link', 'last_login', 'coordenador')
+    fields = ('usuario', 'senha', 'acesso', 'relatorios', 'onedrive_link', 'last_login', 'coordenador')
     list_filter = (CoordenadorFilter,)
 
 class RelatorioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'link', 'display_usuarios')
+    list_display = ('relatorios', 'link', 'display_usuarios')
 
     def display_usuarios(self, obj):
          return ", ".join([usuario.usuario for usuario in obj.usuarios.all()])

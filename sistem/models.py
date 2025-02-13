@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Coordenador(models.Model):
     nome = models.CharField(max_length=100)
     
     def __str__(self):
         return self.nome
+
 
 class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
@@ -19,6 +21,7 @@ class Usuario(models.Model):
     def __str__(self):
         return self.usuario
 
+
 class Relatorio(models.Model):
     nome = models.CharField(max_length=255, default="Sem Nome")  # Campo correto
     link = models.URLField()
@@ -26,6 +29,7 @@ class Relatorio(models.Model):
 
     def __str__(self):
         return self.nome
+
 
 class Acesso(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='acessos')

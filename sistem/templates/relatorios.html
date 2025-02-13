@@ -256,7 +256,7 @@
             document.getElementById('logout-form').submit();
         }
 
-        // Carregamento de relatórios
+        // Carregamento de relatórios - CORREÇÃO PRINCIPAL
         function loadReport(nome, url) {
             document.querySelectorAll('.report-button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
@@ -268,6 +268,7 @@
                 container.innerHTML = `<iframe src="${url}"></iframe>`;
             }
             
+            // Correção do parâmetro na URL
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
 

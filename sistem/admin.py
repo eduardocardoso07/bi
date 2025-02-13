@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Usuario, Relatorios, Acesso, Coordenador, UsuarioRelatorios
+from django.utils.html import format_html
+from .models import Usuario, Relatorio, Acesso, Coordenador  # Nomes corrigidos
 
 class CoordenadorFilter(admin.SimpleListFilter):
     title = 'Coordenador'
@@ -14,21 +15,16 @@ class CoordenadorFilter(admin.SimpleListFilter):
             return queryset.filter(coordenador__id=self.value())
         return queryset
 
-class UsuarioRelatoriosInline(admin.TabularInline):
-    model = UsuarioRelatorios
-    extra = 1
-
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'acesso', 'last_login', 'coordenador')
-    fields = ('usuario', 'senha', 'acesso', 'onedrive_link', 'last_login', 'coordenador')
+    fields = ('usuario', 'senha', 'acesso', 'relatorios', 'onedrive_link', 'last_login', 'coordenador')  # Campo 'relatorios' readicionado
     list_filter = (CoordenadorFilter,)
-    inlines = [UsuarioRelatoriosInline]
 
 class RelatorioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'link', 'display_usuarios')
+    list_display = ('relatorio', 'link', 'display_usuarios')  # Campo 'nome' → 'relatorio'
 
     def display_usuarios(self, obj):
-        return ", ".join([usuario.usuario for usuario in obj.usuarios_relacionados.all()])  # Atualizado related_name
+        return ", ".join([usuario.usuario for usuario in obj.usuarios.all()])  # related_name original
     display_usuarios.short_description = 'Usuários'
 
 class AcessoAdmin(admin.ModelAdmin):
@@ -42,10 +38,8 @@ class AcessoAdmin(admin.ModelAdmin):
 
 class CoordenadorAdmin(admin.ModelAdmin):
     list_display = ('nome',)
-    
 
 admin.site.register(Usuario, UsuarioAdmin)
-admin.site.register(Relatorios, RelatorioAdmin)
+admin.site.register(Relatorio, RelatorioAdmin)  # Registro do modelo correto
 admin.site.register(Acesso, AcessoAdmin)
 admin.site.register(Coordenador, CoordenadorAdmin)
-admin.site.register(UsuarioRelatorios)

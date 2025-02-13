@@ -6,6 +6,7 @@ class Coordenador(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     usuario = models.CharField(max_length=100)
@@ -18,6 +19,7 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.usuario
+
 
 class Relatorio(models.Model):
     nome = models.CharField(max_length=255)  # O tamanho deve corresponder ao banco de dados (255)

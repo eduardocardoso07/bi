@@ -20,7 +20,7 @@ class Usuario(models.Model):
         return self.usuario
 
 class Relatorio(models.Model):
-    nome = models.CharField(max_length=255)  # Confirme que esse campo existe
+    nome = models.CharField(max_length=100)  # Confirme que esse campo existe
     link = models.URLField()
     acesso_externo = models.BooleanField(default=False)
 

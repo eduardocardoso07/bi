@@ -824,14 +824,13 @@ relatorios_urls = [
     }
 ]
 
-# Criar um dicionário a partir da lista para fácil acesso
 relatorios_urls_dict = {r['relatorios']: r['link'] for r in relatorios_urls}
 
 def verificar_credenciais(usuario, senha):
     try:
         user = Usuario.objects.get(usuario=usuario, senha=senha)
         if user.acesso:
-            relatorios_list = list(user.relatorios.all().values_list('relatorios', flat=True))
+            relatorios_list = list(user.relatorios.all().values_list('nome', flat=True))
             return relatorios_list, True
     except Usuario.DoesNotExist:
         return [], False
@@ -845,7 +844,7 @@ def login_view(request):
         if acesso_liberado:
             request.session['usuario'] = usuario
             request.session['relatorios'] = relatorios
-            request.session.set_expiry(14400)  # Expira a sessão em 4 horas
+            request.session.set_expiry(14400)
 
             usuario_obj = Usuario.objects.get(usuario=usuario)
             usuario_obj.last_login = timezone.now()
@@ -865,23 +864,21 @@ def login_view(request):
     return render(request, 'login.html')
 
 def relatorios_view(request):
-    if not request.session.get('usuario'):  # Verifica se a sessão ainda é válida
+    if not request.session.get('usuario'):
         return redirect('login')
 
     usuario = request.session['usuario']
     relatorios = request.session.get('relatorios', [])
-    
-    # Criar lista de relatórios disponíveis com URLs corretas
-    relatorios_disponiveis = [{'relatorios': r, 'url': relatorios_urls_dict.get(r, '#')} for r in relatorios]
 
-    # Obter o relatório selecionado
-    relatorio_nome = request.GET.get('relatorio')
+    relatorios_disponiveis = [{'nome': r, 'url': relatorios_urls_dict.get(r, '#')} for r in relatorios]
+
+    relatorio_nome = request.GET.get('relatorios')
     relatorio_selecionado = relatorios_urls_dict.get(relatorio_nome) if relatorio_nome in relatorios else None
 
     return render(request, 'relatorios.html', {
         'relatorios': relatorios_disponiveis,
         'relatorio_selecionado': relatorio_selecionado,
-        'usuario': usuario,  # Adiciona o nome do usuário ao contexto
+        'usuario': usuario,
     })
 
 def logout_view(request):

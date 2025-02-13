@@ -2,6 +2,9 @@ venv
 db.sqlite3
 *.pyo
 *.pyc
-__pycache__/
-
-
+tests.cpython-312.pyc
+views.cpython-312.pyc
+models.cpython-312.pyc
+apps.cpython-312.pyc
+admin.cpython-312.pyc
+__init__.cpython-312.pyc

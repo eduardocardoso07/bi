@@ -42,6 +42,7 @@ class AcessoAdmin(admin.ModelAdmin):
 
 class CoordenadorAdmin(admin.ModelAdmin):
     list_display = ('nome',)
+    
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Relatorios, RelatorioAdmin)

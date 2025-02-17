@@ -177,13 +177,14 @@
 
     <div class="content">
         <nav class="navbar">
-            <div style="background: linear-gradient(to right, #007506, #ffd000);
-                    padding: 2px 15px;
-                    border-radius: 8px;
+            <div style="display: inline-block;
+                    background-image: linear-gradient(to right, #007506, #ffd000);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    white-space: nowrap;
-                    color: #000000;">
+                    white-space: nowrap;">
                 Olá {{ usuario }}. Bem vindo, que o seu dia seja Vibrante!!
             </div>
             <div>

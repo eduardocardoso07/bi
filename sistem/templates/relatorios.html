@@ -112,6 +112,19 @@
             height: calc(100vh - 100px);
             border: none;
             background: #ffffff;
+            position: relative;
+        }
+
+        /* Adicione o CSS para tentar ocultar os botões de compartilhamento */
+        iframe::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
         }
 
         .navbar {
@@ -162,32 +175,6 @@
                 height: 60vh;
             }
         }
-
-        /* Camada invisível sobre o iframe */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* Container do iframe para manipulação */
-        #iframe-container {
-            position: relative;
-            width: 100%;
-            height: calc(100vh - 100px);
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            position: absolute;
-        }
     </style>
 </head>
 <body>
@@ -230,10 +217,7 @@
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir</a>.
                     </p>
                 {% else %}
-                    <div id="iframe-container">
-                        <iframe id="report-frame" src="{{ relatorio_selecionado }}"></iframe>
-                        <div class="overlay" id="iframe-overlay"></div>
-                    </div>
+                    <iframe src="{{ relatorio_selecionado }}"></iframe>
                 {% endif %}
             {% else %}
                 <p>Selecione um relatório à esquerda para visualizá-lo.</p>
@@ -302,100 +286,12 @@
             if (url.includes('colubrificantes-my.sharepoint.com') || url.includes('linktr.ee')) {
                 container.innerHTML = `<p>Link externo: <a href="${url}" target="_blank">Abrir relatório</a></p>`;
             } else {
-                const iframe = document.createElement('iframe');
-                iframe.src = url;
-                
-                // Função para adicionar o bloqueador
-                const addBlocker = () => {
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        
-                        // Encontra e bloqueia botão de compartilhar
-                        const shareButton = iframeDoc.querySelector('button[aria-label="Share"], button[aria-label="Compartilhar"]');
-                        if (shareButton) {
-                            const blocker = document.createElement('div');
-                            blocker.className = 'share-blocker';
-                            
-                            // Posiciona o bloqueador sobre o botão
-                            const updatePosition = () => {
-                                const rect = shareButton.getBoundingClientRect();
-                                blocker.style.width = `${rect.width}px`;
-                                blocker.style.height = `${rect.height}px`;
-                                blocker.style.top = `${rect.top + window.scrollY}px`;
-                                blocker.style.left = `${rect.left + window.scrollX}px`;
-                            };
-                            
-                            // Atualiza dinamicamente a posição
-                            updatePosition();
-                            window.addEventListener('resize', updatePosition);
-                            
-                            // Observa mudanças no DOM
-                            const observer = new MutationObserver(updatePosition);
-                            observer.observe(iframeDoc.body, {
-                                childList: true,
-                                subtree: true,
-                                attributes: true
-                            });
-                            
-                            iframeDoc.body.appendChild(blocker);
-                        }
-                    } catch (e) {
-                        console.error('Bloqueador não pôde ser aplicado:', e);
-                    }
-                };
-
-                iframe.onload = addBlocker;
-                container.innerHTML = '';
-                container.appendChild(iframe);
+                container.innerHTML = `<iframe src="${url}"></iframe>`;
             }
             
+            // Correção do parâmetro na URL
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
-
-
-        document.addEventListener("DOMContentLoaded", bloquearCompartilhamento);
-
-        function disableIframeClicks() {
-            const iframe = document.getElementById('report-frame');
-            if (!iframe) return;
-
-            try {
-                // Bloqueia interações no iframe
-                const iframeDoc = iframe.contentWindow.document;
-                iframeDoc.addEventListener('click', event => event.stopPropagation(), true);
-                iframeDoc.addEventListener('keydown', event => event.stopPropagation(), true);
-
-                // Oculta os botões de compartilhar/abrir em nova janela no Power BI
-                const style = iframeDoc.createElement('style');
-                style.innerHTML = `
-                    div[role="menu"] { display: none !important; }
-                    button[title*="Compartilhar"] { display: none !important; }
-                    button[title*="Abrir em nova janela"] { display: none !important; }
-                `;
-                iframeDoc.head.appendChild(style);
-            } catch (error) {
-                console.warn('Não foi possível modificar o iframe devido a restrições de mesma origem (CORS).');
-            }
-        }
-
-        function restoreOverlay() {
-            const iframeContainer = document.getElementById('iframe-container');
-            if (iframeContainer) {
-                let overlay = document.getElementById('iframe-overlay');
-                if (!overlay) {
-                    overlay = document.createElement('div');
-                    overlay.id = 'iframe-overlay';
-                    overlay.className = 'overlay';
-                    iframeContainer.appendChild(overlay);
-                }
-            }
-        }
-
-        // Tenta modificar o iframe a cada segundo
-        setInterval(() => {
-            disableIframeClicks();
-            restoreOverlay();
-        }, 1000);
 
         // Exibir toast de notificação
         document.addEventListener('DOMContentLoaded', () => {

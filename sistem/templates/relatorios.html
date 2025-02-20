@@ -162,6 +162,15 @@
                 height: 60vh;
             }
         }
+
+        .share-blocker {
+            position: absolute;
+            background: transparent;
+            cursor: not-allowed;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: all;
+        }
     </style>
 </head>
 <body>
@@ -273,10 +282,53 @@
             if (url.includes('colubrificantes-my.sharepoint.com') || url.includes('linktr.ee')) {
                 container.innerHTML = `<p>Link externo: <a href="${url}" target="_blank">Abrir relatório</a></p>`;
             } else {
-                container.innerHTML = `<iframe src="${url}"></iframe>`;
+                const iframe = document.createElement('iframe');
+                iframe.src = url;
+                
+                // Função para adicionar o bloqueador
+                const addBlocker = () => {
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        
+                        // Encontra e bloqueia botão de compartilhar
+                        const shareButton = iframeDoc.querySelector('button[aria-label="Share"], button[aria-label="Compartilhar"]');
+                        if (shareButton) {
+                            const blocker = document.createElement('div');
+                            blocker.className = 'share-blocker';
+                            
+                            // Posiciona o bloqueador sobre o botão
+                            const updatePosition = () => {
+                                const rect = shareButton.getBoundingClientRect();
+                                blocker.style.width = `${rect.width}px`;
+                                blocker.style.height = `${rect.height}px`;
+                                blocker.style.top = `${rect.top + window.scrollY}px`;
+                                blocker.style.left = `${rect.left + window.scrollX}px`;
+                            };
+                            
+                            // Atualiza dinamicamente a posição
+                            updatePosition();
+                            window.addEventListener('resize', updatePosition);
+                            
+                            // Observa mudanças no DOM
+                            const observer = new MutationObserver(updatePosition);
+                            observer.observe(iframeDoc.body, {
+                                childList: true,
+                                subtree: true,
+                                attributes: true
+                            });
+                            
+                            iframeDoc.body.appendChild(blocker);
+                        }
+                    } catch (e) {
+                        console.error('Bloqueador não pôde ser aplicado:', e);
+                    }
+                };
+
+                iframe.onload = addBlocker;
+                container.innerHTML = '';
+                container.appendChild(iframe);
             }
             
-            // Correção do parâmetro na URL
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
 
@@ -300,13 +352,13 @@
             // Verificar se o horário está no intervalo
             if (
                 (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-                (currentHour === 16 && currentMinutes >= 0 && currentMinutes <= 59)
+                (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 59)
             ) {
                 // Definir a mensagem com base no horário
                 if (currentHour === 7) {
-                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
-                } else if (currentHour === 16) {
-                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 17:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
+                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
+                } else if (currentHour === 13) {
+                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 14:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
                 }
 
                 console.log('Exibindo o toast');

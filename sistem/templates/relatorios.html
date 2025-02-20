@@ -376,12 +376,12 @@
         // Verificar se o horário está no intervalo
         if (
           (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-          (currentHour === 16 && currentMinutes >= 0 && currentMinutes <= 59)
+          (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 59)
         ) {
           // Definir a mensagem com base no horário
           if (currentHour === 7) {
             toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
-          } else if (currentHour === 16) {
+          } else if (currentHour === 13) {
             toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 07:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
           }
 

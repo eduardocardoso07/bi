@@ -164,20 +164,30 @@
         }
 
         /* Camada invisível sobre o iframe */
-            .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: transparent;
-                z-index: 10;
-                pointer-events: none;
-            }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            pointer-events: none;
+        }
 
-            #iframe-container {
-                position: relative;
-            }
+        /* Container do iframe para manipulação */
+        #iframe-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 100px);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
@@ -345,6 +355,29 @@
 
         document.addEventListener("DOMContentLoaded", bloquearCompartilhamento);
 
+        function disableIframeClicks() {
+            const iframe = document.getElementById('report-frame');
+            if (!iframe) return;
+
+            try {
+                // Bloqueia interações no iframe
+                const iframeDoc = iframe.contentWindow.document;
+                iframeDoc.addEventListener('click', event => event.stopPropagation(), true);
+                iframeDoc.addEventListener('keydown', event => event.stopPropagation(), true);
+
+                // Oculta os botões de compartilhar/abrir em nova janela no Power BI
+                const style = iframeDoc.createElement('style');
+                style.innerHTML = `
+                    div[role="menu"] { display: none !important; }
+                    button[title*="Compartilhar"] { display: none !important; }
+                    button[title*="Abrir em nova janela"] { display: none !important; }
+                `;
+                iframeDoc.head.appendChild(style);
+            } catch (error) {
+                console.warn('Não foi possível modificar o iframe devido a restrições de mesma origem (CORS).');
+            }
+        }
+
         function restoreOverlay() {
             const iframeContainer = document.getElementById('iframe-container');
             if (iframeContainer) {
@@ -358,8 +391,11 @@
             }
         }
 
-        // Garante que a camada sempre esteja sobre o iframe
-        setInterval(restoreOverlay, 1000);
+        // Tenta modificar o iframe a cada segundo
+        setInterval(() => {
+            disableIframeClicks();
+            restoreOverlay();
+        }, 1000);
 
         // Exibir toast de notificação
         document.addEventListener('DOMContentLoaded', () => {

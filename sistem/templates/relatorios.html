@@ -115,18 +115,6 @@
             position: relative;
         }
 
-        /* Adicione o CSS para tentar ocultar os botões de compartilhamento */
-        iframe::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            pointer-events: none;
-        }
-
         .navbar {
             background-color: var(--navbar-bg);
             color: var(--navbar-text);
@@ -175,6 +163,29 @@
                 height: 60vh;
             }
         }
+
+        .iframe-container { 
+            position: relative;
+            width: 100%;
+            height: 80vh;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .iframe-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            pointer-events: all; /* Impede interação com os botões do iframe */
+        }
     </style>
 </head>
 <body>
@@ -210,19 +221,22 @@
             </div>
         </nav>
 
-        <div id="report-container">
+        div class="content">
+        <div id="report-container" class="iframe-container">
             {% if relatorio_selecionado %}
                 {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado or "linktr.ee" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir</a>.
                     </p>
                 {% else %}
-                    <iframe src="{{ relatorio_selecionado }}"></iframe>
+                    <iframe id="relatorio-iframe" src="{{ relatorio_selecionado }}" frameborder="0"></iframe>
+                    <div class="iframe-overlay"></div> <!-- Camada invisível que impede cliques -->
                 {% endif %}
             {% else %}
                 <p>Selecione um relatório à esquerda para visualizá-lo.</p>
             {% endif %}
         </div>
+    </div>
 
         <footer class="footer">
             <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>

@@ -163,14 +163,19 @@
             }
         }
 
-        .share-blocker {
-            position: absolute;
-            background: transparent;
-            cursor: not-allowed;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: all;
-        }
+        /* Botão invisível sobre o botão de compartilhamento */
+            overlay-button {
+                position: absolute;
+                top: 10px; /* Ajuste conforme necessário */
+                right: 10px; /* Ajuste conforme necessário */
+                width: 50px; /* Ajuste conforme necessário */
+                height: 30px; /* Ajuste conforme necessário */
+                background: transparent;
+                border: none;
+                cursor: not-allowed;
+                z-index: 9999;
+                pointer-events: auto;
+            }
     </style>
 </head>
 <body>
@@ -331,6 +336,27 @@
             
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
+
+        function bloquearCompartilhamento() {
+            const iframe = document.querySelector("iframe");
+            if (!iframe) return;
+
+            const overlayButton = document.createElement("button");
+            overlayButton.id = "overlay-button";
+            overlayButton.onclick = (event) => event.preventDefault(); // Impede a ação
+
+            // Aguarda o carregamento do iframe
+            iframe.onload = function () {
+                // Define a posição do botão com base no iframe
+                const rect = iframe.getBoundingClientRect();
+                overlayButton.style.top = `${rect.top + 10}px`; // Ajuste fino conforme necessário
+                overlayButton.style.right = `${rect.right - 60}px`; // Ajuste fino conforme necessário
+
+                document.body.appendChild(overlayButton);
+            };
+        }
+
+        document.addEventListener("DOMContentLoaded", bloquearCompartilhamento);
 
         // Exibir toast de notificação
         document.addEventListener('DOMContentLoaded', () => {

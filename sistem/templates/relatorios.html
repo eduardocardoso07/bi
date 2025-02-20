@@ -177,52 +177,6 @@
           height: 60vh;
         }
       }
-
-      /* Adicione o CSS para tentar ocultar os botões de compartilhamento */
-      .content iframe {
-        position: relative;
-      }
-
-      .content iframe:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        pointer-events: none;
-      }
-
-      /* Estilo do quadrado flutuante */
-      .floating-square {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        width: 2.3cm;
-        height: 3cm;
-        background-color: transparent;
-        border: 1px solid rgba(252, 0, 0, 0);
-        z-index: 9999;
-        transition: height 0.2s ease-out;
-      }
-
-      /* Estilo para o Toast */
-      .toast {
-        background: linear-gradient(45deg, #adacac, #ffffff);
-        color: #000000;
-        font-family: "Source Sans Pro", sans-serif;
-      }
-
-      .toast-header {
-        background: linear-gradient(45deg, #adacac, #ffffff);
-        color: #000000;
-        font-family: "Source Sans Pro", sans-serif;
-      }
-
-      .toast-container {
-        z-index: 1055; /* Garantir que fique acima de outros elementos */
-      }
     </style>
   </head>
   <body>
@@ -274,18 +228,11 @@
 
       <div id="report-container">
         {% if relatorio_selecionado %} {% if "colubrificantes-my.sharepoint.com"
-        in relatorio_selecionado %}
+        in relatorio_selecionado or "linktr.ee" in relatorio_selecionado %}
         <p>
           O relatório selecionado é um link externo.
-          <a href="{{ relatorio_selecionado }}" target="_blank">
-            Clique aqui para abrir o relatório </a
-          >.
-        </p>
-        {% elif "linktr.ee" in relatorio_selecionado %}
-        <p>
-          O relatório selecionado é um link externo.
-          <a href="{{ relatorio_selecionado }}" target="_blank">
-            Clique aqui para abrir o Linktree </a
+          <a href="{{ relatorio_selecionado }}" target="_blank"
+            >Clique aqui para abrir</a
           >.
         </p>
         {% else %}
@@ -364,77 +311,50 @@
       {% csrf_token %}
     </form>
 
-    <div class="floating-square"></div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Configurações de sessão e tema
-      const sessionExpiryTime = 14400000; // 4 horas
-      setTimeout(() => {
-        window.location.href = "{% url 'login' %}";
-      }, sessionExpiryTime);
-
-      function resetTimer() {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          window.location.href = "{% url 'login' %}";
-        }, sessionExpiryTime);
-      }
-
-      let timer = setTimeout(() => {
-        window.location.href = "{% url 'login' %}";
-      }, sessionExpiryTime);
-
-      window.onload = resetTimer;
-      window.onmousemove = resetTimer;
-      window.onmousedown = resetTimer;
-      window.ontouchstart = resetTimer;
-      window.onclick = resetTimer;
-      window.onkeypress = resetTimer;
-
+      // Gerenciamento de tema
       function toggleTheme() {
         const currentTheme =
           document.documentElement.getAttribute("data-theme");
         const newTheme = currentTheme === "light" ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
-        const themeIcon = document.getElementById("theme-icon");
-        themeIcon.className =
+        document.getElementById("theme-icon").className =
           newTheme === "dark"
             ? "bi bi-brightness-high-fill"
             : "bi bi-brightness-high";
       }
 
-      function adjustFloatingSquare() {
-        const scrollPosition = window.scrollY;
-        const documentHeight =
-          document.documentElement.scrollHeight - window.innerHeight;
-        const newHeight = 3 + (scrollPosition / documentHeight) * 10;
-        document.querySelector(
-          ".floating-square"
-        ).style.height = `${newHeight}cm`;
+      // Encerrar sessão
+      function logout() {
+        document.getElementById("logout-form").submit();
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const storedTheme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", storedTheme);
-        const themeIcon = document.getElementById("theme-icon");
-        themeIcon.className =
-          storedTheme === "dark"
-            ? "bi bi-brightness-high-fill"
-            : "bi bi-brightness-high";
+      // Carregamento de relatórios - CORREÇÃO PRINCIPAL
+      function loadReport(nome, url) {
+        document
+          .querySelectorAll(".report-button")
+          .forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
 
-        const sidebarLinks = document.querySelectorAll(".sidebar a");
-        sidebarLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            sidebarLinks.forEach((link) => link.classList.remove("selected"));
-            this.classList.add("selected");
-          });
-        });
+        const container = document.getElementById("report-container");
+        if (
+          url.includes("colubrificantes-my.sharepoint.com") ||
+          url.includes("linktr.ee")
+        ) {
+          container.innerHTML = `<p>Link externo: <a href="${url}" target="_blank">Abrir relatório</a></p>`;
+        } else {
+          container.innerHTML = `<iframe src="${url}"></iframe>`;
+        }
 
-        updateReportStatus();
-        window.addEventListener("scroll", adjustFloatingSquare);
-      });
+        // Correção do parâmetro na URL
+        window.history.pushState(
+          {},
+          "",
+          `?relatorio=${encodeURIComponent(nome)}`
+        );
+      }
 
       // Exibir toast de notificação
       document.addEventListener("DOMContentLoaded", () => {
@@ -460,9 +380,9 @@
         ) {
           // Definir a mensagem com base no horário
           if (currentHour === 7) {
-            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
+            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
           } else if (currentHour === 13) {
-            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 07:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
+            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 14:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
           }
 
           console.log("Exibindo o toast");

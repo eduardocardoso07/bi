@@ -112,7 +112,6 @@
             height: calc(100vh - 100px);
             border: none;
             background: #ffffff;
-            position: relative;
         }
 
         .navbar {
@@ -163,29 +162,6 @@
                 height: 60vh;
             }
         }
-
-        .iframe-container { 
-            position: relative;
-            width: 100%;
-            height: 80vh;
-        }
-
-        .iframe-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .iframe-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 10;
-            pointer-events: all; /* Impede interação com os botões do iframe */
-        }
     </style>
 </head>
 <body>
@@ -201,8 +177,15 @@
 
     <div class="content">
         <nav class="navbar">
-            <div>
-                Olá {{ usuario }}. Bem-vindo, que o seu dia seja vibrante!
+            <div style="display: inline-block;
+                    background-image: linear-gradient(to right, #000000, #000000);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;">
+                Olá {{ usuario }}. Bem vindo, que o seu dia seja Vibrante!!
             </div>
             <div>
                 <button class="btn btn-link" onclick="toggleTheme()" style="color: var(--navbar-text);">
@@ -214,21 +197,19 @@
             </div>
         </nav>
 
-        <div id="report-container" class="iframe-container">
+        <div id="report-container">
             {% if relatorio_selecionado %}
                 {% if "colubrificantes-my.sharepoint.com" in relatorio_selecionado or "linktr.ee" in relatorio_selecionado %}
                     <p>O relatório selecionado é um link externo. 
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir</a>.
                     </p>
                 {% else %}
-                    <iframe id="relatorio-iframe" src="{{ relatorio_selecionado }}" frameborder="0"></iframe>
-                    <div class="iframe-overlay"></div>
+                    <iframe src="{{ relatorio_selecionado }}"></iframe>
                 {% endif %}
             {% else %}
                 <p>Selecione um relatório à esquerda para visualizá-lo.</p>
             {% endif %}
         </div>
-    </div>
 
         <footer class="footer">
             <p>&copy; 2024 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
@@ -267,7 +248,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Scripts de interação com o tema e logout
+        // Gerenciamento de tema
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -278,10 +259,12 @@
                 : 'bi bi-brightness-high';
         }
 
+        // Encerrar sessão
         function logout() {
             document.getElementById('logout-form').submit();
         }
 
+        // Carregamento de relatórios - CORREÇÃO PRINCIPAL
         function loadReport(nome, url) {
             document.querySelectorAll('.report-button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
@@ -293,6 +276,7 @@
                 container.innerHTML = `<iframe src="${url}"></iframe>`;
             }
             
+            // Correção do parâmetro na URL
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
 
@@ -316,13 +300,13 @@
             // Verificar se o horário está no intervalo
             if (
                 (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-                (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 59)
+                (currentHour === 16 && currentMinutes >= 0 && currentMinutes <= 59)
             ) {
                 // Definir a mensagem com base no horário
                 if (currentHour === 7) {
-                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
-                } else if (currentHour === 13) {
-                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 14:00 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
+                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 08:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente.  \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02. `;
+                } else if (currentHour === 16) {
+                    toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente as após as 07:15 horas.  \n\n   Inserindo Painel de Performance com resultados por cliente. \n\n   Faseamento Remuneração excepcionalmente em Fevereiro será considerado até dia 17/02, porém será feito manualmente no fechamento do mês, que a informação do Performance continua até 15/02.. `;
                 }
 
                 console.log('Exibindo o toast');

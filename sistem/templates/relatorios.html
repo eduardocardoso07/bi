@@ -163,18 +163,20 @@
             }
         }
 
-        /* Botão invisível sobre o botão de compartilhamento */
-            overlay-button {
+        /* Camada invisível sobre o iframe */
+            .overlay {
                 position: absolute;
-                top: 10px; /* Ajuste conforme necessário */
-                right: 10px; /* Ajuste conforme necessário */
-                width: 50px; /* Ajuste conforme necessário */
-                height: 30px; /* Ajuste conforme necessário */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 background: transparent;
-                border: none;
-                cursor: not-allowed;
-                z-index: 9999;
-                pointer-events: auto;
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            #iframe-container {
+                position: relative;
             }
     </style>
 </head>
@@ -218,7 +220,10 @@
                         <a href="{{ relatorio_selecionado }}" target="_blank">Clique aqui para abrir</a>.
                     </p>
                 {% else %}
-                    <iframe src="{{ relatorio_selecionado }}"></iframe>
+                    <div id="iframe-container">
+                        <iframe id="report-frame" src="{{ relatorio_selecionado }}"></iframe>
+                        <div class="overlay" id="iframe-overlay"></div>
+                    </div>
                 {% endif %}
             {% else %}
                 <p>Selecione um relatório à esquerda para visualizá-lo.</p>
@@ -337,26 +342,24 @@
             window.history.pushState({}, '', `?relatorio=${encodeURIComponent(nome)}`);
         }
 
-        function bloquearCompartilhamento() {
-            const iframe = document.querySelector("iframe");
-            if (!iframe) return;
-
-            const overlayButton = document.createElement("button");
-            overlayButton.id = "overlay-button";
-            overlayButton.onclick = (event) => event.preventDefault(); // Impede a ação
-
-            // Aguarda o carregamento do iframe
-            iframe.onload = function () {
-                // Define a posição do botão com base no iframe
-                const rect = iframe.getBoundingClientRect();
-                overlayButton.style.top = `${rect.top + 10}px`; // Ajuste fino conforme necessário
-                overlayButton.style.right = `${rect.right - 60}px`; // Ajuste fino conforme necessário
-
-                document.body.appendChild(overlayButton);
-            };
-        }
 
         document.addEventListener("DOMContentLoaded", bloquearCompartilhamento);
+
+        function restoreOverlay() {
+            const iframeContainer = document.getElementById('iframe-container');
+            if (iframeContainer) {
+                let overlay = document.getElementById('iframe-overlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'iframe-overlay';
+                    overlay.className = 'overlay';
+                    iframeContainer.appendChild(overlay);
+                }
+            }
+        }
+
+        // Garante que a camada sempre esteja sobre o iframe
+        setInterval(restoreOverlay, 1000);
 
         // Exibir toast de notificação
         document.addEventListener('DOMContentLoaded', () => {

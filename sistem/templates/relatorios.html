@@ -434,13 +434,13 @@
         const currentMinutes = currentTime.getMinutes();
 
         if (
-          (currentHour === 7 && currentMinutes >= 0 && currentMinutes <= 59) ||
-          (currentHour === 13 && currentMinutes >= 0 && currentMinutes <= 59)
+          (currentHour === 8 && currentMinutes >= 0 && currentMinutes <= 59) ||
+          (currentHour === 9 && currentMinutes >= 0 && currentMinutes <= 59)
         ) {
-          if (currentHour === 7) {
-            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente após as 08:15 horas.`;
-          } else if (currentHour === 13) {
-            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em atualização, por gentileza feche o sistema e abra novamente após as 14:15 horas.`;
+          if (currentHour === 8) {
+            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em trasição de sistema, o resultado dos painéis ainda não estão com os resultados do fechamento.`;
+          } else if (currentHour === 59) {
+            toastMessageElement.innerText = `Olá {{ usuario }}, Estamos em trasição de sistema, o resultado dos painéis ainda não estão com os resultados do fechamento.`;
           }
           new bootstrap.Toast(toastElement).show();
         }

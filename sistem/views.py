@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 # ESTRUTURA ORIGINAL (DICIONÁRIO SIMPLES)
 relatorios_urls = {
     'Marketing':'https://linktr.ee/colubrificantes',
+    'Novo Painel':'https://app.powerbi.com/view?r=eyJrIjoiYjIxZmE1N2QtZTg2OS00M2U5LWI2ZGYtNzhiN2IzNmRmYjZjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Gerentes': 'https://app.powerbi.com/view?r=eyJrIjoiYmZlNmNlZjYtZmNhZS00MDE4LTliMWQtYmExNWQ4NGZlZTlkIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'Acompanhamento Diario': 'https://app.powerbi.com/view?r=eyJrIjoiNGE3MWQ5NjgtMzc1Ny00MGZmLWEzMDMtYTU1MTNmMzUwZDMxIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'DAP KPI - Mensal': 'https://app.powerbi.com/view?r=eyJrIjoiZjI1NGY3NTktYTllMC00OGFmLThmYzctYjk5NGU1MWI4YzA0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',

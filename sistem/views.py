@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 # ESTRUTURA ORIGINAL (DICIONÁRIO SIMPLES)
 relatorios_urls = {
-    'Dashboard Comercial':'https://app.powerbi.com/view?r=eyJrIjoiMjY4Yjc5MjQtZmJhMi00NmU1LTk1OTAtYmUzOWM3ZDdjOTY0IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
+    'Dashboard Comercial':'https://app.powerbi.com/view?r=eyJrIjoiMTEwOGZjYTUtZGFjZC00ZThlLWFiYjUtMmQwOGExYTQzOGU5IiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9&pageName=46b4077b080b2b4404d1',
     'Marketing':'https://linktr.ee/colubrificantes',
     'Novo Painel':'https://app.powerbi.com/view?r=eyJrIjoiYjIxZmE1N2QtZTg2OS00M2U5LWI2ZGYtNzhiN2IzNmRmYjZjIiwidCI6ImFjN2Q4YTcyLTBhOGItNDRjZS05NmZjLTdkMWFhMGVjZmMzMSJ9',
     'OneDrive - Business Intelligence': 'https://colubrificantes-my.sharepoint.com/:f:/g/personal/sabrina_manzoli_colubrificantes_com_br/Ein-hXyOGLFCh-FVwHmmHucBVpWVBOoGh5nSMg4w_g2j7w?e=BnvepW',

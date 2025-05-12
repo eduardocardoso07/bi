@@ -27,12 +27,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1',  # Para localhost
+    'http://localhost',  # Para localhost
+    'http://192.168.0.8',
+]
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'corsheaders',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,9 +87,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sistema',
         'USER': 'postgres',
-        'PASSWORD': 'Mobil@2024',
+        'PASSWORD': 'Lubrax@2025',
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        }
 
     }
 }
@@ -111,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Campo_Grande'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -124,9 +135,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA = '/media/'

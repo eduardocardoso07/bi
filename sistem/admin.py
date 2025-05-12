@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Usuario, Relatorio, Acesso, Coordenador  # Nomes corrigidos
+from .models import Usuario, Relatorio, Acesso, Coordenador, Brindes, Lancamentos
 
 class CoordenadorFilter(admin.SimpleListFilter):
     title = 'Coordenador'
@@ -16,8 +16,8 @@ class CoordenadorFilter(admin.SimpleListFilter):
         return queryset
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('usuario', 'acesso', 'last_login', 'coordenador')
-    fields = ('usuario', 'senha', 'acesso', 'relatorios', 'onedrive_link', 'last_login', 'coordenador')  # Campo 'relatorios' readicionado
+    list_display = ('usuario', 'setor', 'acesso', 'last_login', 'coordenador')
+    fields = ('usuario', 'senha', 'setor', 'acesso', 'relatorios', 'onedrive_link', 'last_login', 'coordenador')  # Campo 'relatorios' readicionado
     list_filter = (CoordenadorFilter,)
 
 class RelatorioAdmin(admin.ModelAdmin):
@@ -39,7 +39,18 @@ class AcessoAdmin(admin.ModelAdmin):
 class CoordenadorAdmin(admin.ModelAdmin):
     list_display = ('nome',)
 
+class BrindesAdmin(admin.ModelAdmin):
+    list_display = ('description', 'quantity', 'price', 'image', 'id')
+    search_fields = ('description',)
+    ordering = ('description',)
+
+class LancamentosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'data', 'cliente_codigo', 'vendedor', 'brinde',  'valor_total',)
+    search_field = ('vendedor',)
+
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Relatorio, RelatorioAdmin)  # Registro do modelo correto
 admin.site.register(Acesso, AcessoAdmin)
 admin.site.register(Coordenador, CoordenadorAdmin)
+admin.site.register(Brindes, BrindesAdmin)
+admin.site.register(Lancamentos, LancamentosAdmin)

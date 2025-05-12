@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% load static %}
 
-<head>
+<html lang="pt-br">
+    <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon2.png">
+    </head>
+
     <title>Sistema Web</title>
     <style>
+      
         body {
-            background: linear-gradient(to right, #444444 100%, #5f0000 0%);
+            background: url('/static/images/image_tela_login.png') no-repeat center center fixed;
             background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #343333;
             color: rgb(255, 255, 255);
             font-family: 'Source Sans Pro', sans-serif;
             margin: 0;
             padding: 0;
         }
-
-        .logo-container {
+        
+        .logo-container { 
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -30,37 +33,37 @@
             top: 0;
             left: 0;
         }
-
+        
         .logo-container img {
             max-width: 500px;
             height: auto;
         }
-
+        
         .main-container {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            height: 100vh;
+            height: 70vh;
             z-index: 2;
             margin-top: calc(7cm + 10px);
         }
-
+        
         .login-container {
-            background-color: rgba(255, 255, 255, 0.39);
-            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.70);
+            padding: 12px;
             border-radius: 10px;
             width: 100%;
             max-width: 400px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-
+        
         .login-container .form-label,
         .login-container .form-text,
         .login-container .form-check-label {
             color: #000;
             font-family: 'Source Sans Pro', sans-serif;
         }
-
+        
         .login-container .form-control {
             display: block;
             margin: 10px 0;
@@ -75,13 +78,13 @@
             box-shadow: 0 0 8px rgba(0, 149, 255, 0);
             outline: none;
         }
-
+        
         .login-container .form-control:focus {
             outline: none;
             border: 1px solid rgba(255, 0, 0, 0.7);
             box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
         }
-
+        
         .login-container .form-check-input {
             appearance: none;
             -webkit-appearance: none;
@@ -95,12 +98,12 @@
             outline: none;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-
+        
         .login-container .form-check-input:checked {
             background-color: #ff0000;
             border-color: #ff0000;
         }
-
+        
         .login-container .btn {
             padding: 10px;
             width: 100%;
@@ -112,35 +115,37 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+        
         .login-container .btn:hover {
             background-color: #8F0000;
         }
-
+        
         .footer {
-            position: absolute;
-            width: 100%;
+            padding: 10px 10px; 
+            border-radius: 15px; 
+            width: 93%; 
             text-align: center;
-            background-color: rgba(0, 0, 0, 0);
-            padding: 10px 0;
-            font-size: 15px;
-            z-index: 1;
+            position:absolute;
+            bottom: 0; 
+            left: 50; 
+            z-index: 10; 
+            font-size: 12px;
+            opacity: 0.80
         }
-
+        
         .footer a {
             color: var(--footer-text);
             text-decoration: none;
         }
-
+        
         .footer a:hover {
             text-decoration: underline;
         }
-    </style>
-</head>
+        </style>
 
 <body>
     <div class="logo-container">
-        <img src="/static/images/novalogo.png" alt="Logo">
+        <img src="/static/images/novalogo2.png" alt="Logo">
     </div>
 
     <div class="main-container">
@@ -149,11 +154,11 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuário:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" required>
+                    <input type="text" class="form-control" id="usuario" name="usuario" required="">
                 </div>
                 <div class="mb-3">
                     <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" class="form-control" id="senha" name="senha" required>
+                    <input type="password" class="form-control" id="senha" name="senha" required="">
                     <div id="usernameHelp" class="form-text">Nunca compartilharemos seu nome de usuário e senha com ninguém.</div>
                 </div>
                 <div class="mb-3 form-check">
@@ -167,17 +172,15 @@
             {% endif %}
         </div>
     </div>
-    <footer class="footer">
-        <p>&copy; 2025 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
 
+    <footer class="footer" style="top: -130px;">
+        <p>© 2025 Desenvolvido pelo Departamento de Business Intelligence do Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93</p>
         <a href="https://wa.me/+556792017120" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Sabrina Manzoli | Coordenadora de Business Intelligence
         </a>
-
         <a href="https://wa.me/+556792113061" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Vander Denardi | Analista de Business Intelligence
         </a>
-
         <a href="https://wa.me/+556792418978" target="_blank" style="color: var(--footer-text); margin-right: 15px;">
             <i class="bi bi-whatsapp"></i> Eduardo Cardoso | Assistente de Business Intelligence
         </a>
@@ -194,6 +197,6 @@
             }
         });
     </script>
-</body>
 
+</body>
 </html>

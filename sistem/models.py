@@ -57,7 +57,7 @@ class Brindes(models.Model):
 
 
     id = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=50, unique=True, verbose_name='Descrição')
+    description = models.CharField(max_length=23, unique=True, verbose_name='Descrição')
     quantity = models.IntegerField(verbose_name='Quantidade')
     price = models.FloatField(verbose_name='Preço')
     image = models.ImageField(upload_to='tela/marketing/', blank=True, null=True, verbose_name='Imagem')

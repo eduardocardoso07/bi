@@ -52,10 +52,6 @@ class Acesso(models.Model):
 
     def __str__(self):
         return f'{self.usuario.usuario} - {self.data_hora}'
-
-
-    def __str__(self):
-        return self.nome
     
 class Brindes(models.Model):
 

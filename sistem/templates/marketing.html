@@ -32,14 +32,17 @@
             padding: 15px;
             text-align: center;
             border-bottom: 2px solid #444;
+            padding: 9px;
         }
 
         h1 {
             margin: 0;
             font-size: 28px;
+            top: 12px;
+            position: relative;
         }
 
-        form {
+        div {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -55,8 +58,8 @@
             border-radius: 4px;
             margin-right: 10px;
             transition: border-bottom-color 0.3s ease-in-out;
-            position: absolute;
-            right: 700px;
+            position: relative;
+            left: 5px;
         }
 
         input[type="text"]:focus {
@@ -66,17 +69,17 @@
             
         }
 
+
         @media (max-width: 1500px) {
                 input[type="text"] { 
                     padding: 10px;
-                    font-size: 16px;
+                    font-size: 15px;
                     border: 2px solid #e3e1e1;
                     border-radius: 4px;
                     margin-right: 10px;
                     transition: border-bottom-color 0.3s ease-in-out;
-                    position: absolute;
-                    right: 500px;
-                    top: 85px;
+                    position: relative;
+                    right: 500spx;
             }
         }
 
@@ -89,8 +92,8 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
-            position: absolute;
-            left: 830px;
+            position: relative;
+            left: 30px;
         }
 
         @media (max-width: 1500px) {
@@ -104,8 +107,8 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease-in-out;
                 position: absolute;
-                left: 57%;
-                top: 90px;
+                left: 59%;
+                top: 100px;
             }
         }
 
@@ -114,7 +117,7 @@
          
         }
 
-        .btn {
+        .btn-cadastrar {
             background-color: #056383;
             color: white;
             border-radius: 4px;
@@ -126,7 +129,7 @@
             transition: background-color 0.3s ease-in-out;
             position: relative;
             left: 470px;
-            top: 0px;
+            top: -15px;
         }
 
         .btn:hover {
@@ -251,12 +254,12 @@
             color: white;
             background-color: #454747;
             text-decoration: none;
-            position: absolute;
-            top: 11px;
+            position: relative;
+            top: -15px;
             font-size: 15px;
             padding: 10px 20px;
             border-radius: 4px;
-            left: 220px;
+            right: 800px;
         }
 
         .home-btn:hover {
@@ -268,30 +271,28 @@
                 color: white;
                 background-color: #454747;
                 text-decoration: none;
-                position: absolute;
-                top: 11px;
+                position: relative;
+                top: -15px;
                 font-size: 15px;
                 padding: 10px 20px;
                 border-radius: 4px;
-                left: 20px;
+                right: 599px;
             }
            
         }
 
         .lanc-btn {
-            background-color: #454747;
             color: white;
-            border-radius: 4px;
-            font-size: 15px;
-            cursor: pointer;
+            background-color: #454747;
             text-decoration: none;
-            padding: 10px 20px;
-            border: none;
-            transition: background-color 0.3s ease-in-out;
             position: relative;
-            left: -420px;
-            top: -74px
-        }
+            top: -15px;
+            font-size: 15px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            right: 550px;
+            }
+
 
         .lanc-btn:hover {
             background-color: #595b5c;
@@ -299,19 +300,16 @@
 
         @media (max-width: 1500px) {
             .lanc-btn {
-                background-color: #454747;
                 color: white;
-                border-radius: 4px;
-                font-size: 15px;
-                cursor: pointer;
+                background-color: #454747;
                 text-decoration: none;
-                padding: 10px 20px;
-                border: none;
-                transition: background-color 0.3s ease-in-out;
                 position: relative;
-                left: -330px;
-                top: -74px
-        }
+                top: -15px;
+                font-size: 15px;
+                padding: 10px 20px;
+                border-radius: 4px;
+                right: 340px;
+            }
         }
 
         footer {
@@ -326,21 +324,21 @@
 <body>
     <header>
         <h1>Brindes Cadastrados</h1>
-    </header>
-
-    {% load static %}   
-
-    <form method="GET" action="{% url 'marketing' %}">
-        <input type="text" name="search" placeholder="Buscar brinde...">
-        <button type="submit">Buscar</button>
-        <a href="/tela/marketing/new_brinde/" class="btn">+ Cadastrar Brinde</a>
+        <a href="/tela/marketing/new_brinde/" class="btn-cadastrar">+ Cadastrar Brinde</a>
         <a href="/tela/marketing/lista_lancamento/" class="lanc-btn">
             <i class="fa-solid fa-arrow-up-from-bracket" style="color: #ffffff;"></i>
               Lançamentos</a>
         <a href="/tela/" class="home-btn">
             <i class="fa-solid fa-house" style="color: #ffffff;"></i>
-              Início</a>    
-    </form>
+              Início</a> 
+    </header>
+
+    {% load static %}   
+
+    <div method="GET" action="{% url 'marketing' %}">
+        <input type="text" name="search" placeholder="Buscar brinde...">
+        <button type="submit">Buscar</button>
+    </div>
 
   
 

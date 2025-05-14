@@ -335,9 +335,12 @@
 
     {% load static %}   
 
-    <div method="GET" action="{% url 'marketing' %}">
-        <input type="text" name="search" placeholder="Buscar brinde...">
-        <button type="submit">Buscar</button>
+    <div>
+        <form method="GET" action="{% url 'marketing' %}">
+            <input type="text" name="search" placeholder="Buscar brinde...">
+            <button type="submit">Buscar</button>
+        </form>
+
     </div>
 
   

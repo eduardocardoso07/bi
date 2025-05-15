@@ -40,14 +40,19 @@
       flex-direction: column;
     }
 
+    .center-container {
+      justify-items: center;
+    }
 
     .card-body {
       background-color: #2c2929;
       color: white;
-      width: 500x;
+      width: 50%;
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      top: 50%;
     }
 
     .buttons-container {
@@ -82,23 +87,6 @@
       background-color: #d2221c;
     }
 
-    footer {
-      text-align: center;
-      font-size: 15px;
-      color: #aaa;
-      padding: 15px 10px;
-      background-color: #1e1e1e;
-    }
-
-    footer a {
-      color: #aaa;
-      margin-right: 15px;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #fff;
-    }
   </style>
 </head>
 <body>
@@ -108,8 +96,8 @@
       <h1>Deletar Brinde</h1>
       <p>Tem certeza que deseja deletar o brinde <strong>{{ object.description }}</strong>?
       <br>
-      <br>ATENÇÃO!
-      <br>Isso apagará todos os lançamentos que contenham esse brinde registrado!</p>
+      <p style="color: rgb(211, 211, 5);">ATENÇÃO!</p>
+      <p>Isso apagará todos os lançamentos que contenham esse brinde registrado!</p>
       <form method="post">
         {% csrf_token %}
         <div class="buttons-container">
@@ -119,23 +107,6 @@
       </form>
     </div>
   </div>
-
-  <footer>
-    <p>
-      &copy; 2025 Desenvolvido pelo Departamento de Business Intelligence do
-      Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93
-    </p>
-    <a href="https://wa.me/+556792017120" target="_blank">
-      <i class="bi bi-whatsapp"></i> Sabrina Manzoli
-    </a>
-    <a href="https://wa.me/+556792113061" target="_blank">
-      <i class="bi bi-whatsapp"></i> Vander Denardi
-    </a>
-    <a href="https://wa.me/+556792418978" target="_blank">
-      <i class="bi bi-whatsapp"></i> Eduardo Cardoso
-    </a>
-  </footer>
-
 </body>
 </html>
 {% endblock %}

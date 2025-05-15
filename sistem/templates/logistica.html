@@ -157,26 +157,15 @@
         z-index: 9999;
         transition: height 0.2s ease-out;
       }
-
-      .tampa-marca {
-        position: absolute;
-        bottom: 30px;
-        right: 0px;
-        width: 2500px;
-        height: 80px;
-        background-color: #262626;
-      }
-
-      @media (max-width: 1366px) {
-        .tampa-marca {
-          position: absolute;
-          bottom: 10px;
-          right: 0px;
-          width: 1500px;
-          height: 77px;
-        }
-      }
-
+    .tampa-marca {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 75px;
+      background-color: #262626;
+      z-index: 10;
+    }
       .paragrafo-else {
       font-size: 30px;
       text-align: center;
@@ -227,14 +216,14 @@
         </div>
       </nav>
 
-      <div id="report-container">
+    <div id="report-container" style="position: relative;">
         {% if relatorio_selecionado %}
-            <iframe src="{{ relatorio_selecionado }}"></iframe>
+          <iframe src="{{ relatorio_selecionado }}"></iframe>
+          <div class="tampa-marca"></div>
         {% else %}
-            <p class="paragrafo-else">Nenhum relatório de logística associado ao usuário.</p>
+          <p class="paragrafo-else">Nenhum relatório comercial associado ao usuário.</p>
         {% endif %}
     </div>
-
       <footer class="footer">
         <p>
           &copy; 2025 Desenvolvido pelo Departamento de Business Intelligence do

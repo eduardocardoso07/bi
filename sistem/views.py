@@ -190,7 +190,6 @@ def marketing_view(request):
 
     brindes = Brindes.objects.all().order_by('description')
     search = request.GET.get('search')
-    print(search)
     
     if search:
         brindes = Brindes.objects.filter(description__icontains=search)

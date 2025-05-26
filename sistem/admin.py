@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Usuario, Relatorio, Acesso, Coordenador, Brindes, Lancamentos
+from .models import Usuario, Relatorio, Acesso, Coordenador, Brindes, Lancamentos, TelaAcessada
 
 class CoordenadorFilter(admin.SimpleListFilter):
     title = 'Coordenador'
@@ -26,15 +26,19 @@ class RelatorioAdmin(admin.ModelAdmin):
     def display_usuarios(self, obj):
         return ", ".join([usuario.usuario for usuario in obj.usuarios.all()])  # related_name original
     display_usuarios.short_description = 'Usuários'
-
+                         
 class AcessoAdmin(admin.ModelAdmin):
-    list_display = ('usuario', 'data_hora', 'ip_address', 'get_coordenador')
+    list_display = ('usuario', 'data_hora', 'ip_address', 'get_coordenador', 'display_caminhos')
     readonly_fields = ('data_hora', 'ip_address')
     list_filter = ('usuario__coordenador',)
 
     def get_coordenador(self, obj):
         return obj.usuario.coordenador
     get_coordenador.short_description = 'Coordenador'
+
+    def display_caminhos(self, obj):
+        return " -- ".join([tela.caminho for tela in obj.telas.all()])
+    display_caminhos.short_description = 'Telas Acessadas'
 
 class CoordenadorAdmin(admin.ModelAdmin):
     list_display = ('nome',)
@@ -48,9 +52,21 @@ class LancamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'data', 'cliente_codigo', 'vendedor', 'brinde',  'valor_total',)
     search_field = ('vendedor',)
 
+class TelaAcessadaAdmin(admin.ModelAdmin):
+    
+    list_display = ('acesso', 'caminho', 'entrada', 'saida', 'tempo_permanencia')
+
+    def tempo_permanencia(self, obj):
+        if obj.saida and obj.entrada:
+            obj.total = obj.saida - obj.entrada
+            return obj.saida - obj.entrada
+        return '-'
+    tempo_permanencia.short_description = 'Tempo de Permanência'
+
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Relatorio, RelatorioAdmin)  # Registro do modelo correto
 admin.site.register(Acesso, AcessoAdmin)
 admin.site.register(Coordenador, CoordenadorAdmin)
 admin.site.register(Brindes, BrindesAdmin)
 admin.site.register(Lancamentos, LancamentosAdmin)
+admin.site.register(TelaAcessada, TelaAcessadaAdmin)

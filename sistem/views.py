@@ -2,13 +2,14 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from openpyxl import Workbook
 from datetime import datetime
+
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from sistem.forms import BrindeForm, LancamentoForm
 from django.utils import timezone
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-from .models import Usuario, Acesso, Lancamentos, Brindes
+from .models import Usuario, Acesso, Lancamentos, Brindes, TelaAcessada
 import logging
 
 logger = logging.getLogger(__name__)
@@ -61,13 +62,13 @@ def login_view(request):
             request.session['relatorios'] = relatorios
             request.session.set_expiry(14400)  # 4 horas
 
-            usuario_obj.last_login = timezone.now()
-            usuario_obj.save()
-
-            Acesso.objects.create(
-                usuario=usuario_obj,
-                ip_address=request.META.get('REMOTE_ADDR')
+            acesso_obj = Acesso.objects.create(
+            usuario=usuario_obj,
+            ip_address=request.META.get('REMOTE_ADDR')
             )
+
+            request.session['id'] = acesso_obj.id  # Agora sim você tem o ID certo
+
 
             logger.info(f'Usuário {usuario} realizou login em {timezone.now()}')
 
@@ -90,6 +91,7 @@ def logistica_view(request):
     nome_relatorio_associado = nome_relatorio_associado.replace('Comercial Geral', "")
     nome_relatorio_associado = nome_relatorio_associado.replace('Financeiro', "")
     print(nome_relatorio_associado)
+    get_tela_acessada(request)
 
     # Gerando a lista de relatórios disponíveis
     # relatorios_disponiveis = [{'nome': r, 'url': relatorios_urls.get(r, {}).get(usuario, '#')} for r in relatorios]
@@ -124,7 +126,7 @@ def comercial_view(request):
     nome_relatorio_associado = nome_relatorio_associado.replace('Financeiro', '')
 
     print(nome_relatorio_associado)
-
+    get_tela_acessada(request)
     
 
     # Gerando a lista de relatórios disponíveis
@@ -162,11 +164,14 @@ def financeiro_view(request):
     relatorios = request.session.get('relatorios', [])
     nome_relatorio_associado = "".join(relatorios).replace('Logística', '').replace('Comercial Geral', '')
 
+    get_tela_acessada(request)
+
     relatorio_nome = request.GET.get('relatorio')
     relatorio_selecionado = None
 
     if relatorio_nome and nome_relatorio_associado in financeiro_url:
         relatorio_selecionado = financeiro_url[relatorio_nome]
+
 
     return render(request, 'financeiro.html', {
         'relatorio_selecionado': relatorio_selecionado,
@@ -273,17 +278,37 @@ class lista_lancamento_view(MarketingRequiredMixin, ListView):
     ordering = ['-data']
     paginate_by = 11
 
-@require_POST
+    def post(self, request, *args, **kwargs):
+        selecionado_id = request.POST.get("selecionado")
+        if selecionado_id:
+            return redirect('lancamento_delete', pk=selecionado_id)
+        else:
+            messages.error(self.request, "Nenhum lançamento selecionado.")
+            return self.get(request, *args, **kwargs)
+
+
 def lancamento_delete_view(request):
-    ids = request.POST.getlist('selecionados')
-    if ids:
-        Lancamentos.objects.filter(id__in=ids).delete()
-        messages.success(request, f"{len(ids)} lançamento(s) excluído(s) com sucesso.")
+    if request.method == 'POST':
+        selected_id = request.POST.get('selected_id')
+
+        if selected_id:
+            lancamento = get_object_or_404(Lancamentos, pk=selected_id)
+            brinde = lancamento.brinde
+
+            # Devolve a quantidade lançada ao brinde
+            brinde.quantity += lancamento.quantidade_lancada
+            brinde.save()
+
+            lancamento.delete()
+            messages.success(request, "Lançamento deletado com sucesso.")
+        else:
+            messages.error(request, "Nenhum lançamento selecionado.")
+
+        return redirect('lista_lancamento')  # Nome correto da sua URL
     else:
-        messages.warning(request, "Nenhum lançamento foi selecionado.")
-    return redirect('lista_lancamento')
-
-
+        messages.error(request, "Requisição inválida.")
+        return redirect('lista_lancamento')
+    
 def exportar_lancamentos_excel(request):
     wb = Workbook()
     ws = wb.active
@@ -333,11 +358,46 @@ def tela_view(request):
         return redirect('login')
 
     usuario = Usuario.objects.get(id=request.session['usuario_id'])  # objeto completo
+    print(usuario)
+    get_tela_acessada(request)
 
     return render(request, 'tela.html', {
         'usuario': usuario,
     })
 
 def logout_view(request):
+    acesso_id_sessao = request.session.get('id')
+    if acesso_id_sessao:
+        ultima_tela = TelaAcessada.objects.filter(acesso_id=acesso_id_sessao, saida__isnull=True).last()
+        if ultima_tela:
+            ultima_tela.saida = timezone.now()
+            ultima_tela.save()
+            print(f"Saída registrada no logout para: {ultima_tela.caminho}")
+    
     logout(request)
     return redirect('login')
+
+
+def get_tela_acessada(request):
+    caminho = request.path
+    acesso_id_sessao = request.session.get('id')
+
+    if acesso_id_sessao is None:
+        print("ID de acesso não encontrado na sessão.")
+        return
+
+    try:
+        # Fecha a tela anterior
+        ultima_tela = TelaAcessada.objects.filter(acesso_id=acesso_id_sessao, saida__isnull=True).last()
+        if ultima_tela:
+            ultima_tela.saida = timezone.now()
+            ultima_tela.save()
+            print(f"Saída registrada para a tela: {ultima_tela.caminho}")
+
+        # Registra a nova tela acessada
+        TelaAcessada.objects.create(caminho=caminho, acesso_id=acesso_id_sessao)
+        print(f"Caminho {caminho} adicionado ao banco com sucesso.")
+        return caminho
+
+    except Acesso.DoesNotExist:
+        print(f"Acesso com id {acesso_id_sessao} não encontrado no banco.")

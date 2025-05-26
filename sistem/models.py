@@ -35,29 +35,45 @@ class Usuario(models.Model):
         related_name='vendedores'
     )
 
-
     setor = models.CharField(max_length=32, null=True, blank=True)
 
     def __str__(self):
         return self.usuario
-
+    
 class Acesso(models.Model):
     usuario = models.ForeignKey(
         Usuario, 
         on_delete=models.CASCADE, 
         related_name='acessos'  # RELATED_NAME ORIGINAL
     )
+    
     data_hora = models.DateTimeField(auto_now_add=True)
     ip_address = models.GenericIPAddressField()
 
     def __str__(self):
         return f'{self.usuario.usuario} - {self.data_hora}'
-    
+# models.py
+
+
+class TelaAcessada(models.Model):
+    caminho = models.CharField(max_length=255)
+    acesso = models.ForeignKey('Acesso', on_delete=models.CASCADE, related_name='telas')
+    entrada = models.DateTimeField(auto_now_add=True)
+    saida = models.DateTimeField(null=True, blank=True)
+
+    def tempo_permanencia(self):
+        if self.saida and self.entrada:
+            return self.saida - self.entrada
+        return None
+
+    def __str__(self):
+        return f"{self.acesso} - {self.caminho}"
+
+
+
 class Brindes(models.Model):
-
-
     id = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=23, unique=True, verbose_name='Descrição')
+    description = models.CharField(max_length=50, unique=True, verbose_name='Descrição')
     quantity = models.IntegerField(verbose_name='Quantidade')
     price = models.FloatField(verbose_name='Preço')
     image = models.ImageField(upload_to='tela/marketing/', blank=True, null=True, verbose_name='Imagem')

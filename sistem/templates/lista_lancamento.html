@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Lançamentos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon2.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #3e3d3d;
+            padding: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #e8e8e8;
+            box-shadow: 0 0 10px rgba(0,0,0,0.09);
+            border-radius: 5px;
+        }
+        header {
+            background-color: #2b2b2b;
+            padding: 9px;
+            text-align: center;
+            border-bottom: 2px solid #8d8888;
+            border-radius: 5px;
+            color: white;
+            position: relative;
+            height: 80px;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #4b4c4d;
+            color: #fff;
+            border-right: 0.9px solid #9fa1a3;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        caption {
+            caption-side: top;
+            text-align: left;
+            padding-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .pagination {
+            margin-top: 0px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .pagination span, .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 0 4px;
+            background: #272a2c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .pagination .current {
+            background: #303132;
+        }
+        .pagination .disabled {
+            background: #ccc;
+            color: #757373;
+        }
+        .delete-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            font-size: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+        }
+        .delete-button:hover {
+            background: #c0392b;
+        }
+        .btn {
+            background-color: #454747;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 15px;
+            color: white;
+            padding: 9px;
+            position: absolute;
+            left: 220px;
+            top: 25px;
+        }
+        .btn:hover {
+            background-color: #595b5c;
+        }
+        .btn-volta {
+            background-color: #056383;
+            text-decoration: none; 
+            border-radius: 5px;
+            font-size: 15px;
+            color: white;
+            padding: 9px;
+            position: absolute;
+            left: 45px;
+            top: 25px;
+        }
+        .btn-volta:hover {
+            background-color: #0096c7;
+        }
+        .btn-exportar {
+            background-color: #454747;
+            text-decoration: none;
+            color: white;
+            padding: 9px;
+            border-radius: 5px;
+            position: absolute;
+            right: 150px;
+            top: 25px;
+        }
+        .btn-exportar:hover {
+            background-color: #595b5c;
+        }
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 15px;
+            color: #aaa;
+            padding: 20px 0px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lançamentos</h1>
+    <a class="btn" href='new_lancamento/'> + Novo Lançamento</a>
+    <a class="btn-volta" href="/tela/marketing/"> Voltar para brindes</a>
+    <a class="btn-exportar" href="{% url 'exportar_lancamentos' %}">
+        <i class="fa-regular fa-file-excel" style="color: #09d758;"></i> Exportar
+    </a>
+</header>
+
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li style="color: rgb(255, 255, 255)">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form method="post" action="{% url 'lancamento_delete' %}">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Data</th>
+                <th>Nota Fiscal</th>
+                <th>Cliente Código</th>
+                <th>Vendedor</th>
+                <th>Brinde</th>
+                <th>Quantidade Lançada</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lancamento in lancamentos %}
+            <tr>
+                <td><input type="radio" name="selected_id" value="{{ lancamento.id }}"></td>
+                <td>{{ lancamento.data }}</td>
+                <td>{{ lancamento.nota_fiscal }}</td>
+                <td>{{ lancamento.cliente_codigo }}</td>
+                <td>{{ lancamento.vendedor }}</td>
+                <td>{{ lancamento.brinde.description }}</td>
+                <td>{{ lancamento.quantidade_lancada }}</td>
+                <td>{{ lancamento.valor_total }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="9">Nenhum lançamento encontrado.</td></tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    <button class="delete-button" type="submit">Excluir lançamento </button>
+</form>
+
+
+<!-- Paginação -->
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% else %}
+        <span class="disabled">Anterior</span>
+    {% endif %}
+
+    <span class="current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+    {% else %}
+        <span class="disabled">Próxima</span>
+    {% endif %}
+</div>
+
+<footer class="footer">
+    <p>
+        &copy; 2025 Desenvolvido pelo Departamento de Business Intelligence do
+        Grupo Centro Oeste Lubrificantes - 07.606.538/0001-93
+    </p>
+    <a href="https://wa.me/+556792017120" target="_blank" style="color: #aaa; margin-right: 15px">
+        <i class="bi bi-whatsapp"></i> Sabrina Manzoli
+    </a>
+    <a href="https://wa.me/+556792113061" target="_blank" style="color: #aaa; margin-right: 15px">
+        <i class="bi bi-whatsapp"></i> Vander Denardi
+    </a>
+    <a href="https://wa.me/+556792418978" target="_blank" style="color: #aaa; margin-right: 15px">
+        <i class="bi bi-whatsapp"></i> Eduardo Cardoso
+    </a>
+</footer>
+
+<script>
+    // Seleciona/deseleciona todos os checkboxes ao clicar no cabeçalho
+    document.getElementById('select-all').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('input[name="selected_ids"]');
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+</script>
+
+</body>
+</html>

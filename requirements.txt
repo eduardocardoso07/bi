@@ -1,0 +1,7 @@
+﻿asgiref==3.8.1
+Django==5.0.7
+psycopg2-binary==2.9.9
+sqlparse==0.5.1
+tzdata==2024.1
+pillow==11.2.1
+openpyxl==3.1.5
